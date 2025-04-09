@@ -49,3 +49,22 @@ A MERN Stack platform for accessing and managing university study materials, inc
 ```bash
 git clone https://github.com/AliSohail23/AG-Tech-II-Project.git
 ```
+
+### 2️⃣ Navigate to project directory  
+```bash
+cd path/to/ag-tech-ii-project-/Frontend
+```
+
+### 3️⃣ Install dependecies  
+```bash
+npm install
+```
+
+### 4️⃣ Start the development server
+```bash
+npm run dev
+```
+
+This will provide you a local address to run the web application. 
+
+
