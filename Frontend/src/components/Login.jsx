@@ -1,20 +1,47 @@
-import React from 'react';
+import React from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function AuthPage() {
+  const navigate = useNavigate()
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="flex max-w-5xl w-full bg-white rounded-lg shadow-md overflow-hidden">
-        {/* Left side: Form */}
+        {/* Swap image */}
+        {/* Left side: Image */}
+        <div className="hidden md:block md:w-1/2">
+          <img
+            src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
+            alt="Login Visual"
+            className="h-full w-full object-cover"
+          />
+        </div>
+
+        {/* Right side: Form */}
         <div className="w-full md:w-1/2 p-8 space-y-6">
           <div>
-            <h2 className="text-2xl font-bold text-gray-900">Sign in to your account</h2>
+            <h2 className="text-2xl font-bold text-gray-900">
+              Sign in to your account
+            </h2>
             <p className="text-sm text-gray-500 mt-1">
-              Not a member? <a href="#" className="text-blue-600 font-medium">Start a 15 day free trial</a>
+              Not a member?{" "}
+              <a
+                href="#"
+                onClick={() => navigate("/signup")}
+                className="text-blue-600 font-medium"
+              >
+                Create an account
+              </a>
             </p>
           </div>
           <form className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email address</label>
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Email address
+              </label>
               <input
                 type="email"
                 id="email"
@@ -22,7 +49,12 @@ export default function AuthPage() {
               />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
+                Password
+              </label>
               <input
                 type="password"
                 id="password"
@@ -33,28 +65,30 @@ export default function AuthPage() {
               <label className="flex items-center text-sm text-gray-600">
                 <input type="checkbox" className="mr-2" /> Remember me
               </label>
-              <a href="#" className="text-sm text-blue-600 hover:underline">Forgot password?</a>
+              <a href="#" className="text-sm text-blue-600 hover:underline">
+                Forgot password?
+              </a>
             </div>
-            <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300">
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition duration-300"
+            >
               Sign in
             </button>
-            <div className="flex items-center justify-center text-sm text-gray-500">or continue with</div>
+            <div className="flex items-center justify-center text-sm text-gray-500">
+              or continue with
+            </div>
             <div className="flex space-x-4">
-              <button className="flex-1 border border-gray-300 py-2 rounded-md text-sm hover:bg-gray-100">Google</button>
-              <button className="flex-1 border border-gray-300 py-2 rounded-md text-sm hover:bg-gray-100">GitHub</button>
+              <button className="flex-1 border border-gray-300 py-2 rounded-md text-sm hover:bg-gray-100">
+                Google
+              </button>
+              <button className="flex-1 border border-gray-300 py-2 rounded-md text-sm hover:bg-gray-100">
+                GitHub
+              </button>
             </div>
           </form>
         </div>
-
-        {/* Right side: Image */}
-        <div className="hidden md:block md:w-1/2">
-          <img
-            src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
-            alt="Login Visual"
-            className="h-full w-full object-cover"
-          />
-        </div>
       </div>
     </div>
-  );
+  )
 }
