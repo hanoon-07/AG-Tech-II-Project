@@ -3,7 +3,7 @@
 A MERN Stack platform for accessing and managing university study materials, including books, outlines, and Tech Guidance.   
 
 ---
-
+## Top Contributor for Assigning the 💲 Rewards 
 ## 📌 Project Breakdown  
 
 ### 🔹 Roles  
