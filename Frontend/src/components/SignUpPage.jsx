@@ -116,17 +116,7 @@ export default function SignUpPage() {
             >
               Sign Up
             </button>
-            <div className="flex items-center justify-center text-sm text-gray-500">
-              or continue with
-            </div>
-            <div className="flex space-x-4">
-              <button className="flex-1 border border-gray-300 py-2 rounded-md text-sm hover:bg-gray-100">
-                Google
-              </button>
-              <button className="flex-1 border border-gray-300 py-2 rounded-md text-sm hover:bg-gray-100">
-                GitHub
-              </button>
-            </div>
+          
           </form>
         </div>
       </div>
