@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
 import PastPapers from "./pages/PastPapers";
@@ -8,17 +8,21 @@ import TechGuidance from "./pages/TechGuidance";
 import ContactUs from "./pages/ContactUs";
 import Home from "./Pages/Home";
 
-import Login from "./components/Login"
+import Login from "./components/Login";
 import SignUpPage from "./components/SignUpPage";
 import Footer from "./components/Footer";
 
+const Layout = () => {
+  const location = useLocation();
 
-const App = () => {
+  const hideFooterRoutes = ["/login", "/signup"];
+  const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
+
   return (
-    <Router>
+    <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/past-papers" element={<PastPapers />} />
@@ -26,9 +30,15 @@ const App = () => {
         <Route path="/tech-guidance" element={<TechGuidance />} />
         <Route path="/contact-us" element={<ContactUs />} />
       </Routes>
-      <Footer/>
-    </Router>
+      {shouldShowFooter && <Footer />}
+    </>
   );
 };
+
+const App = () => (
+  <Router>
+    <Layout />
+  </Router>
+);
 
 export default App;
