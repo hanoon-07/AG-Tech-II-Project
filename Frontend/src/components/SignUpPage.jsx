@@ -27,7 +27,7 @@ export default function SignUpPage() {
       <div className="flex max-w-5xl w-full bg-white rounded-lg shadow-md overflow-hidden">
         {/* Swap image */}
         {/* Left side: Image */}
-        <div className="hidden md:block md:w-1/2">
+        <div className="hidden md:block md:w-1/2 animate-fadeIn">
           <img
             src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8"
             alt="Sign Up Visual"
@@ -36,7 +36,7 @@ export default function SignUpPage() {
         </div>
 
         {/* Right side: Form */}
-        <div className="w-full md:w-1/2 p-8 space-y-6">
+        <div className="w-full md:w-1/2 p-8 space-y-6 animate-fadeIn">
           <div>
             <h2 className="text-2xl font-bold text-gray-900">Create Account</h2>
             <p className="text-sm text-gray-500 mt-1">
@@ -51,7 +51,7 @@ export default function SignUpPage() {
             </p>
           </div>
           <form onSubmit={handleSubmit} className="space-y-4">
-            <div>
+            <div classname = "space-y-4">
               <label
                 htmlFor="username"
                 className="block text-sm font-medium text-gray-700"
@@ -64,8 +64,7 @@ export default function SignUpPage() {
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                required
+                className="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all duration-200"
               />
             </div>
             <div>
@@ -81,8 +80,8 @@ export default function SignUpPage() {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                required
+                className="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all duration-200"
+
               />
             </div>
             <div>
@@ -98,11 +97,9 @@ export default function SignUpPage() {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="mt-1 w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-600"
-                required
+                className="w-full border border-gray-300 rounded-xl px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary shadow-sm transition-all duration-200"
+
               />
-            </div>
-            <div className="flex items-center justify-between">
               <label className="flex items-center text-sm text-gray-600">
                 <input type="checkbox" className="mr-2" /> Remember me
               </label>
