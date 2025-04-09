@@ -52,19 +52,27 @@ git clone https://github.com/AliSohail23/AG-Tech-II-Project.git
 
 ### 2️⃣ Navigate to project directory  
 ```bash
-cd path/to/ag-tech-ii-project-/Frontend
+cd path/ag-tech-ii-project/Frontend
 ```
 
 ### 3️⃣ Install dependecies  
 ```bash
 npm install
 ```
+or
+```bash
+yarn install
+```
 
 ### 4️⃣ Start the development server
 ```bash
 npm run dev
 ```
+or
+```bash
+yarn run dev
+```
 
-This will provide you a local address to run the web application. 
+This will provide you a local address to run the web application. 😎 
 
 
