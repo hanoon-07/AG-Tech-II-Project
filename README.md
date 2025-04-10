@@ -43,6 +43,10 @@ A MERN Stack platform for accessing and managing university study materials, inc
 
 ---
 
+## All Contributors
+<img src="https://avatars.githubusercontent.com/u/12345678?v=4" width="50px;" />	
+@MonishKumar-max	
+
 ## 🚀 Getting Started  
 
 ### 1️⃣ Clone the Repository  
