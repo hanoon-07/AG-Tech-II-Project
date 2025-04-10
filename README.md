@@ -43,9 +43,17 @@ A MERN Stack platform for accessing and managing university study materials, inc
 
 ---
 
-## All Contributors
-<img src="https://avatars.githubusercontent.com/u/12345678?v=4" width="50px;" />	
-@MonishKumar-max	
+## 👥 All Contributors
+
+Thanks to these amazing people for their contributions:
+
+| Avatar | Username | Contributions |
+|--------|----------|----------------|
+| <img src="https://avatars.githubusercontent.com/u/128673394?s=96&v=4" width="50px;" /> | [@Ali Gates](https://github.com/AliGates915) | 💻 Project Admin, 🛠️ Manage Project |
+
+> Want to be featured here? Contribute to the project and submit a PR or join discussions in Issues!
+
+---
 
 ## 🚀 Getting Started  
 
