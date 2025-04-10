@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-import PastPapers from "./pages/PastPapers";
+import PastPapers from "./Pages/PastPapers";
 import CourseBook from "./pages/CourseBook";
 import TechGuidance from "./pages/TechGuidance";
 import ContactUs from "./pages/ContactUs";
