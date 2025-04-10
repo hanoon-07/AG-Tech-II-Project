@@ -85,8 +85,7 @@ or
 yarn run dev
 ```
 ---
-## Join to me own Discord Server.
-https://ag-tech-ii-project.vercel.app/
+## [Join to me own Discord Server](https://discord.gg/gSRwHkSm)
 ---
 This will provide you a local address to run the web application. 😎 
 
