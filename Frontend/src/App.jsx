@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from "react-route
 import Navbar from "./components/Navbar";
 
 import PastPapers from "./Pages/PastPapers";
-import CourseBook from "./pages/CourseBook";
-import TechGuidance from "./pages/TechGuidance";
-import ContactUs from "./pages/ContactUs";
+import CourseBook from "./Pages/CourseBook";
+import TechGuidance from "./Pages/TechGuidance";
+import ContactUs from "./Pages/ContactUs";
 import Home from "./Pages/Home";
 
 import Login from "./components/Login";
