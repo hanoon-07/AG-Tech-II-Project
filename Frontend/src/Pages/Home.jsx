@@ -2,6 +2,7 @@ import React from "react";
 import RecentUploads from "../components/RecentUploads";
 import Features from "../components/Features";
 import { Link } from "react-router-dom";
+import Button from "../components/Button";
 
 const Home = () => {
   return (
@@ -47,12 +48,12 @@ const Home = () => {
             <p className="mt-4 text-xl [text-shadow:_0_6px_6px_rgb(0_0_0_/1)]">
               If you want to upload study material
             </p>
-            <Link
+            <Button
               to="/upload-paper"
-              className="bg-blue-500 hover:bg-blue-700 text-white px-6 py-3 mt-4 rounded-lg text-lg inline-block"
+              className="bg-blue-500 hover:bg-blue-700 text-white px-6 py-3 mt-4 rounded-lg text-lg"
             >
               Wish to Upload
-            </Link>
+            </Button>
           </div>
         </div>
       </div>
