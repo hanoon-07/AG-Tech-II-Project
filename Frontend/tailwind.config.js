@@ -5,7 +5,6 @@ export const theme = {
       secondary: "#FFFFFF", // Light background or card background
       lightRed: "#EB664E",
       darkRed: "#A63446",
-
       shadows50Percent: "#1A1A1A80",
       shadows70Percent: "#3D3E3FB2",
       darkBlue: "#031928",
