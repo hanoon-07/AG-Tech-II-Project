@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "../components/Button";
 
 const PastPapers = () => {
   return (
@@ -127,9 +128,9 @@ function Papercontents() {
             Program
           </div>
           <div className="text-orange-500">Punjab University</div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
 
         <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
@@ -147,9 +148,9 @@ function Papercontents() {
           <div className="text-orange-500">
             UNIVERSITY OF MANAGMENT & TECHNOLOGY
           </div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
 
         <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
@@ -165,9 +166,9 @@ function Papercontents() {
             Program
           </div>
           <div className="text-orange-500">Punjab University</div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -185,9 +186,9 @@ function Papercontents() {
             Program
           </div>
           <div className="text-orange-500">Punjab University</div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
 
         <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
@@ -205,11 +206,11 @@ function Papercontents() {
           <div className="text-orange-500">
             UNIVERSITY OF MANAGMENT & TECHNOLOGY
           </div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
-        
+
         <div className="bg-white w-90   h-90  shadow-md rounded-lg  text-center">
           <div>
             <img
@@ -223,9 +224,9 @@ function Papercontents() {
             Program
           </div>
           <div className="text-orange-500">Punjab University</div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -243,9 +244,9 @@ function Papercontents() {
             Program
           </div>
           <div className="text-orange-500">Punjab University</div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
 
         <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
@@ -263,9 +264,9 @@ function Papercontents() {
           <div className="text-orange-500">
             UNIVERSITY OF MANAGMENT & TECHNOLOGY
           </div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
 
         <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
@@ -281,12 +282,11 @@ function Papercontents() {
             Program
           </div>
           <div className="text-orange-500">Punjab University</div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
       </div>
-
 
       <div className="flex justify-around py-8 ">
         <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
@@ -302,9 +302,9 @@ function Papercontents() {
             Program
           </div>
           <div className="text-orange-500">Punjab University</div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
 
         <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
@@ -322,9 +322,9 @@ function Papercontents() {
           <div className="text-orange-500">
             UNIVERSITY OF MANAGMENT & TECHNOLOGY
           </div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
 
         <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
@@ -340,14 +340,12 @@ function Papercontents() {
             Program
           </div>
           <div className="text-orange-500">Punjab University</div>
-          <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
+          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
             DOWNLOAD
-          </button>
+          </Button>
         </div>
       </div>
-
-
-      </div>
+    </div>
   );
 }
 

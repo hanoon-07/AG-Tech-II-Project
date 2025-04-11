@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 const RecentUploads = () => {
   const uploads = [
@@ -65,9 +66,9 @@ const RecentUploads = () => {
             <h3 className="text-lg font-semibold mt-2">{upload.title}</h3>
             <p className="text-sm text-gray-600">{upload.university}</p>
             {/* Small & Centered Button */}
-            <button className="mt-3 bg-blue-600 text-white px-3 py-1 text-sm rounded-full shadow hover:bg-blue-700 transition">
+            <Button className="mt-3 bg-blue-600 text-white px-3 py-1 text-sm rounded-full shadow hover:bg-blue-700 transition">
               DOWNLOAD
-            </button>
+            </Button>
           </div>
         ))}
       </div>
