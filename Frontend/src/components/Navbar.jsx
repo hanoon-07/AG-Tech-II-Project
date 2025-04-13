@@ -19,7 +19,9 @@ const Navbar = () => {
     <nav className="w-full fixed top-0 z-50 transition-all duration-300">
       <div
         className={`px-4 md:px-8 lg:px-16 py-4 ${
-          scrolling ? "bg-blue-900/90 backdrop-blur-md shadow-lg" : "bg-transparent"
+          scrolling
+            ? "bg-blue-900/90 backdrop-blur-md shadow-lg"
+            : "bg-transparent"
         }`}
       >
         <div className="flex justify-between items-center">
@@ -30,12 +32,47 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            <ul className="flex gap-6 text-lg text-white">
-              <li><Link to="/" className="hover:text-blue-300 transition-colors duration-300 relative group">Home</Link></li>
-              <li><Link to="/past-papers" className="hover:text-blue-300 transition-colors duration-300 relative group">Past Papers</Link></li>
-              <li><Link to="/course-book" className="hover:text-blue-300 transition-colors duration-300 relative group">Course Book</Link></li>
-              <li><Link to="/tech-guidance" className="hover:text-blue-300 transition-colors duration-300 relative group">Tech Guidance</Link></li>
-              <li><Link to="/contact-us" className="hover:text-blue-300 transition-colors duration-300 relative group">Contact Us</Link></li>
+            <ul className="flex text-lg text-white">
+              <li>
+                <Link
+                  to="/"
+                  className="hover:text-white transition-colors duration-300 relative  hover:bg-blue-500 px-4 py-2 rounded-md"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/past-papers"
+                  className="hover:text-white transition-colors duration-300 relative  hover:bg-blue-500 px-4 py-2 rounded-md"
+                >
+                  Past Papers
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/course-book"
+                  className="hover:text-white transition-colors duration-300 relative  hover:bg-blue-500 px-4 py-2 rounded-md"
+                >
+                  Course Book
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/tech-guidance"
+                  className="hover:text-white transition-colors duration-300 relative  hover:bg-blue-500 px-4 py-2 rounded-md"
+                >
+                  Tech Guidance
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/contact-us"
+                  className="hover:text-white transition-colors duration-300 relative  hover:bg-blue-500 px-4 py-2 rounded-md"
+                >
+                  Contact Us
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -55,11 +92,51 @@ const Navbar = () => {
             className="absolute top-5 right-5 text-3xl cursor-pointer hover:rotate-90 transition-transform duration-300"
           />
           <ul className="flex flex-col items-center gap-6 text-lg text-black">
-            <li><Link to="/" onClick={handleToggle} className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300">Home</Link></li>
-            <li><Link to="/past-papers" onClick={handleToggle} className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300">Past Papers</Link></li>
-            <li><Link to="/course-book" onClick={handleToggle} className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300">Course Book</Link></li>
-            <li><Link to="/tech-guidance" onClick={handleToggle} className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300">Tech Guidance</Link></li>
-            <li><Link to="/contact-us" onClick={handleToggle} className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300">Contact Us</Link></li>
+            <li>
+              <Link
+                to="/"
+                onClick={handleToggle}
+                className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300"
+              >
+                Home
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/past-papers"
+                onClick={handleToggle}
+                className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300"
+              >
+                Past Papers
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/course-book"
+                onClick={handleToggle}
+                className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300"
+              >
+                Course Book
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/tech-guidance"
+                onClick={handleToggle}
+                className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300"
+              >
+                Tech Guidance
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/contact-us"
+                onClick={handleToggle}
+                className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300"
+              >
+                Contact Us
+              </Link>
+            </li>
           </ul>
         </div>
       )}
