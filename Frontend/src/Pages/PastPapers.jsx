@@ -1,5 +1,6 @@
 import React from "react";
 import Button from "../components/Button";
+import PaperContentsItem from "../components/PaperContentsItem";
 
 const PastPapers = () => {
   return (
@@ -115,23 +116,13 @@ function Papercontents() {
   return (
     <div>
       <div className="flex justify-around py-8 ">
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/a50070f65919473e/Screenshot%202025-04-10%20104809.png?Expires=1838870304&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=s0msf5v9bmeplnIhPNPwwl4BnBu~guJ4eEs~6KTzWSw~-Bm0rNE4gDAnO2aEWekNu9iMMjF0qNEaCaTN6gvWfk-JzZiUvpe6U-NaWj1Kf4Du51hQLaDeb4Dfa3Z81lufN5R~NZEuVYR4YDRDf2hg8cyMUet0O4PRtySeWdJ4jLa-L-Fop36Ei1ZLeiAgPPuhC1q0LYZETpcgNkn9pigUAyrPtGhWP66MJbzP4EU4hhGA7dAzegNw1Rd2YsHZ7QU-ddbq~4BuugdswVNE~cwsXtUilt0AyFJC3Ogp3uOKZDfY1QZq0AhnCDS1fdX42E7NN9dEotn66DNnuoHNiSSlbA__"
-              className="w-90 h-61  "
-            />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">Punjab University</div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
+        <PaperContentsItem
+          img="https://media-hosting.imagekit.io/a50070f65919473e/Screenshot%202025-04-10%20104809.png?Expires=1838870304&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=s0msf5v9bmeplnIhPNPwwl4BnBu~guJ4eEs~6KTzWSw~-Bm0rNE4gDAnO2aEWekNu9iMMjF0qNEaCaTN6gvWfk-JzZiUvpe6U-NaWj1Kf4Du51hQLaDeb4Dfa3Z81lufN5R~NZEuVYR4YDRDf2hg8cyMUet0O4PRtySeWdJ4jLa-L-Fop36Ei1ZLeiAgPPuhC1q0LYZETpcgNkn9pigUAyrPtGhWP66MJbzP4EU4hhGA7dAzegNw1Rd2YsHZ7QU-ddbq~4BuugdswVNE~cwsXtUilt0AyFJC3Ogp3uOKZDfY1QZq0AhnCDS1fdX42E7NN9dEotn66DNnuoHNiSSlbA__"
+          alt="IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years Program"
+          title="IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years
+            Program"
+          university="Punjab University"
+        />
 
         <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
           <div>
