@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { ClimbingBoxLoader } from "react-spinners";
 import RecentUploads from "../components/RecentUploads";
 import Features from "../components/Features";
-import { Link } from "react-router-dom";
 import Button from "../components/Button";
 
 const Home = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Show loader for 2 seconds
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-white">
+        <ClimbingBoxLoader color="#2563EB" loading={true} size={15} />
+      </div>
+    );
+  }
+
   return (
     <>
-      <div className="">
+      <div>
         <div
           className="h-screen flex flex-col items-center justify-center bg-cover bg-center relative pt-20 px-4"
           style={{ backgroundImage: "url('/Images/hero.jpg')" }}
@@ -17,10 +36,7 @@ const Home = () => {
 
           {/* Main Content */}
           <div className="relative z-10 text-center text-white w-full max-w-4xl">
-            <h1
-              className="text-3xl md:text-5xl lg:text-6xl font-medium mb-6 
-          leading-tight [text-shadow:_0_4px_4px_rgb(0_0_0_/2)]"
-            >
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium mb-6 leading-tight [text-shadow:_0_4px_4px_rgb(0_0_0_/2)]">
               Get Free University Past Papers & Tech Guidance
             </h1>
 
@@ -30,11 +46,9 @@ const Home = () => {
                 <input
                   type="text"
                   placeholder="Search Past Papers & Tech Guidance..."
-                  className="w-full p-4 pr-12 rounded-full bg-white text-black placeholder-gray-500
-              focus:outline-none focus:ring-0"
+                  className="w-full p-4 pr-12 rounded-full bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-0"
                 />
-                {/* Search Button with Image */}
-                <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-blue-600 p-2 rounded-full hover:bg-blue-700">
+                <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#2563EB] p-2 rounded-full hover:bg-blue-700">
                   <img
                     src="/Images/search.png"
                     alt="Search"
@@ -49,8 +63,9 @@ const Home = () => {
               If you want to upload study material
             </p>
             <Button
-              to="/upload-paper"
-              className="bg-blue-500 hover:bg-blue-700 text-white px-6 py-3 mt-4 rounded-lg text-lg"
+              to="/signup"
+              className="bg-[#2563EB] hover:bg-blue-700 hover:font-bold  text-white px-6 py-3 mt-4 
+              rounded-full text-lg transition-all duration-300 ease-in-out transform hover:scale-100"
             >
               Wish to Upload
             </Button>

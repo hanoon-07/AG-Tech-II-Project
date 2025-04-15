@@ -1,6 +1,29 @@
 import React from 'react'
 
+import { useEffect, useState } from "react";
+import { ClimbingBoxLoader } from "react-spinners";
+
 const CourseBook = () => {
+
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Show loader for 2 seconds
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-white">
+        <ClimbingBoxLoader color="#2563EB" loading={true} size={15} />
+      </div>
+    );
+  }
+
   return (
     <>
     <div>

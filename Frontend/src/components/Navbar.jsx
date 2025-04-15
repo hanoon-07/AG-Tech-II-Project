@@ -20,14 +20,16 @@ const Navbar = () => {
       <div
         className={`px-4 md:px-8 lg:px-16 py-4 ${
           scrolling
-            ? "bg-blue-900/90 backdrop-blur-md shadow-lg"
+            ? "bg-[#2563EB] backdrop-blur-md shadow-lg"
             : "bg-transparent"
         }`}
       >
         <div className="flex justify-between items-center">
           {/* Logo */}
           <div>
+          <Link to="/" >
             <h1 className="text-white text-xl font-bold">AG Tech-II</h1>
+          </Link>
           </div>
 
           {/* Desktop Navigation */}
@@ -36,7 +38,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/"
-                  className="hover:text-white transition-colors duration-300 relative  hover:bg-blue-500 px-4 py-2 rounded-md"
+                  className=" nav-link transition-colors duration-300 relative px-4 py-2 rounded-md"
                 >
                   Home
                 </Link>
@@ -44,7 +46,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/past-papers"
-                  className="hover:text-white transition-colors duration-300 relative  hover:bg-blue-500 px-4 py-2 rounded-md"
+                  className="nav-link transition-colors duration-300 relative px-4 py-2 rounded-md"
                 >
                   Past Papers
                 </Link>
@@ -52,7 +54,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/course-book"
-                  className="hover:text-white transition-colors duration-300 relative  hover:bg-blue-500 px-4 py-2 rounded-md"
+                  className="nav-link transition-colors duration-300 relative  px-4 py-2 rounded-md"
                 >
                   Course Book
                 </Link>
@@ -60,7 +62,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/tech-guidance"
-                  className="hover:text-white transition-colors duration-300 relative  hover:bg-blue-500 px-4 py-2 rounded-md"
+                  className="nav-link transition-colors duration-300 relative  px-4 py-2 rounded-md"
                 >
                   Tech Guidance
                 </Link>
@@ -68,7 +70,7 @@ const Navbar = () => {
               <li>
                 <Link
                   to="/contact-us"
-                  className="hover:text-white transition-colors duration-300 relative  hover:bg-blue-500 px-4 py-2 rounded-md"
+                  className="nav-link  transition-colors duration-300 relative px-4 py-2 rounded-md"
                 >
                   Contact Us
                 </Link>

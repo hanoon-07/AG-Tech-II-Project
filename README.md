@@ -67,7 +67,7 @@ git clone https://github.com/AliSohail23/AG-Tech-II-Project.git
 cd path/ag-tech-ii-project/Frontend
 ```
 
-### 3️⃣ Install dependecies  
+### 3️⃣ Install dependencies    
 ```bash
 npm install
 ```
@@ -75,7 +75,10 @@ or
 ```bash
 yarn install
 ```
-
+ If you are facing any issue like your node modules is not create then use this code 
+ ```bash
+ yarn add vite@latest --dev --ignore-engines
+ ```
 ### 4️⃣ Start the development server
 ```bash
 npm run dev

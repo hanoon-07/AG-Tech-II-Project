@@ -21,12 +21,13 @@ import UploadPaper from "./Pages/UploadPaper";
 const Layout = () => {
   const location = useLocation();
 
-  const hideFooterRoutes = ["/login", "/signup"];
-  const shouldShowFooter = !hideFooterRoutes.includes(location.pathname);
+  const hiddenRoutes = ["/login", "/signup"];
+  const shouldShowNavbar = !hiddenRoutes.includes(location.pathname);
+  const shouldShowFooter = !hiddenRoutes.includes(location.pathname);
 
   return (
     <>
-      <Navbar />
+      {shouldShowNavbar && <Navbar />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
