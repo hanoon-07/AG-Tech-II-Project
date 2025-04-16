@@ -50,7 +50,7 @@ Thanks to these amazing people for their contributions:
 | Avatar | Username | Contributions |
 |--------|----------|----------------|
 | <img src="https://avatars.githubusercontent.com/u/128673394?s=96&v=4" width="50px;" /> | [@Ali Gates](https://github.com/AliGates915) | 💻 Project Admin, 🛠️ Manage Project |
-
+| <img src="https://avatars.githubusercontent.com/u/115923680?v=4" width="50px;" /> | [@Sathwik61](https://github.com/Sathwik61) | Fixed SignUp and Login Routes (#27) |
 > Want to be featured here? Contribute to the project and submit a PR or join discussions in Issues!
 
 ---
