@@ -51,12 +51,12 @@ const RecentUploads = () => {
         {uploads.map((upload) => (
           <div
             key={upload.id}
-            className="bg-white p-4 shadow-md rounded-lg relative flex flex-col items-center text-center"
+            className="bg-gray-50 p-4 shadow-md rounded-lg relative flex flex-col items-center text-center transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl cursor-pointer"
           >
             <img
               src={upload.image}
               alt={upload.title}
-              className="w-full h-48 object-cover rounded-lg"
+              className="w-full h-48 object-cover rounded-lg transition-all duration-300 ease-in-out transform hover:scale-110"
             />
             {upload.year && (
               <span className="bg-blue-600 text-white text-xs px-2 py-1 rounded-md absolute top-2 right-2">
@@ -66,12 +66,14 @@ const RecentUploads = () => {
             <h3 className="text-lg font-semibold mt-2">{upload.title}</h3>
             <p className="text-sm text-gray-600">{upload.university}</p>
             {/* Small & Centered Button */}
-            <Button className="mt-3 bg-blue-600 text-white px-3 py-1 text-sm rounded-full shadow hover:bg-blue-700 transition">
+            <Button className="mt-3 bg-blue-600 text-white px-6 py-3 text-sm rounded-full shadow-md     hover:bg-amber-500 hover:font-bold transition-all duration-200 ease-in-out transform hover:scale-105   hover:translate-y-1 cursor-pointer">
               DOWNLOAD
             </Button>
+
           </div>
         ))}
       </div>
+
     </div>
   );
 };
