@@ -2,28 +2,27 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { ClimbingBoxLoader } from "react-spinners";
 import Button from "../components/Button";
-import PaperContentsItem from "../components/PaperContentsItem";
 
 const PastPapers = () => {
   const [loading, setLoading] = useState(true);
-  
-    useEffect(() => {
-      // Show loader for 2 seconds
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 1000);
-  
-      return () => clearTimeout(timer);
-    }, []);
-  
-    if (loading) {
-      return (
-        <div className="h-screen flex items-center justify-center bg-white">
-          <ClimbingBoxLoader color="#2563EB" loading={true} size={15} />
-        </div>
-      );
-    }
-  
+
+  useEffect(() => {
+    // Show loader for 2 seconds
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-white">
+        <ClimbingBoxLoader color="#2563EB" loading={true} size={15} />
+      </div>
+    );
+  }
+
 
   return (
     <>
@@ -34,12 +33,8 @@ const PastPapers = () => {
         <Searchcontents />
       </div>
       <div>
-        <Papersearch />
-      </div>
-      <div>
         <Papercontents />
       </div>
-      <br />
       <br />
     </>
   );
@@ -61,303 +56,131 @@ function Searchcontents() {
       <br />
       <div
         className="text-5xl font-bold text-black flex items-center justify-center"
-        style={{ textShadow: "3px 3px 5px rgba(0, 0, 0, 0.5)" }}
+        style={{ textShadow: "2px 2px 6px rgba(255, 255, 255, 0.8)"     }}
       >
         All Past Papers
       </div>
 
-      <div className=" flex  items-end justify-around p-4">
-        <div>
+      {/* Search Field */}
+      <div className="flex flex-wrap items-end justify-around gap-4 p-4 rounded-lg shadow-md">
+        <div className="relative w-full mx-8">
           <label
-            htmlFor="subject"
-            className="block text-gray-800 mb-2 text-sm font-medium"
+            htmlFor="default-search"
+            className="mb-2 text-sm font-medium text-gray-900 sr-only"
           >
-            Subject Name:
+            Search
           </label>
-          <input
-            id="subject"
-            type="text"
-            className="w-120 px-4 bg-white shadow-[5px_5px_10px_rgba(0,0,0,0.4)] focus:outline-none py-3"
-            defaultValue="Discrete Mathametics 3rd Semester"
-            style={{ borderRadius: "2px" }}
-          />
-        </div>
-        <div>
-          <label
-            htmlFor="course"
-            className="block text-gray-800 mb-2 text-sm font-medium"
-          >
-            Course Code
-          </label>
-          <input
-            id="course code"
-            type="text"
-            className="w-30 px-4 bg-white shadow-[5px_5px_10px_rgba(0,0,0,0.4)] focus:outline-none py-3"
-            defaultValue="GE-167"
-            style={{ borderRadius: "2px" }}
-          />
-        </div>
-
-        <div>
-          <button className="flex items-center bg-blue-600 text-white font-semibold px-6 py-2 rounded-full border-2 shadow-md">
-            <span className="mr-3">Search Paper</span>
-            <div className="bg-white rounded-full p-1 border-2 ">
-              <svg
-                className="w-4 h-4 text-blue-600"
-                fill="none"
+          <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+            <svg
+              className="w-4 h-4 text-[#2563EB]"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
+              <path
                 stroke="currentColor"
+                strokeLinecap="round"
+                strokeLinejoin="round"
                 strokeWidth="2"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 1010.5 3a7.5 7.5 0 006.15 13.65z"
-                />
-              </svg>
-            </div>
+                d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
+              />
+            </svg>
+          </div>
+          <input
+            type="search"
+            id="default-search"
+            className="z-20 block w-full p-4 pl-10 pr-28 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-[#D5E4]"
+            placeholder="Discrete Mathematics 3rd Semester"
+            required
+          />
+          <button
+            type="submit"
+            className="cursor-pointer absolute right-2.5 bottom-2.5 text-white bg-blue-700 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
+          >
+            Search
           </button>
         </div>
       </div>
+
+
     </div>
   );
 }
 
-function Papersearch() {
-  return (
-    <div className="flex justify-around text-xl">
-      Search Result Past Paper: Discrete Mathematics 3rd Semester Course Code
-      GE-167
-      <br></br>
-      <br></br>
-    </div>
-  );
-}
 
 function Papercontents() {
+  // Dummy Values
+  const uploads = [
+    {
+      id: 1,
+      year: "2018",
+      title: "IT-201 Object Oriented Programming Past Paper 2018",
+      university: "Punjab University",
+      image: "./Images/2018.PNG",
+    },
+    {
+      id: 2,
+      year: "2019",
+      title: "IT-201 Object Oriented Programming Past Paper 2019",
+      university: "University of Management & Technology",
+      image: "./Images/2020.PNG",
+    },
+    {
+      id: 3,
+      year: "2021",
+      title: "IT-201 Object Oriented Programming Past Paper 2021",
+      university: "Punjab University",
+      image: "./Images/bs 2021.PNG",
+    },
+    {
+      id: 4,
+      title: "Discrete Mathematics and Its Applications",
+      university: "Kenneth Rosen",
+      image: "./Images/Discrete Mathematics.jpg",
+    },
+    {
+      id: 5,
+      title: "Database Past Paper and Guess Material 3rd Semester",
+      university: "PU & Other Universities",
+      image: "./Images/Guess Paper.png",
+    },
+    {
+      id: 6,
+      title: "Programming Fundamentals - C++",
+      university: "D.S Malik",
+      image: "./Images/DS Malik C++.jpg",
+    },
+  ];
+
   return (
-    <div>
-      <div className="flex justify-around py-8 ">
-        <PaperContentsItem
-          img="https://media-hosting.imagekit.io/a50070f65919473e/Screenshot%202025-04-10%20104809.png?Expires=1838870304&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=s0msf5v9bmeplnIhPNPwwl4BnBu~guJ4eEs~6KTzWSw~-Bm0rNE4gDAnO2aEWekNu9iMMjF0qNEaCaTN6gvWfk-JzZiUvpe6U-NaWj1Kf4Du51hQLaDeb4Dfa3Z81lufN5R~NZEuVYR4YDRDf2hg8cyMUet0O4PRtySeWdJ4jLa-L-Fop36Ei1ZLeiAgPPuhC1q0LYZETpcgNkn9pigUAyrPtGhWP66MJbzP4EU4hhGA7dAzegNw1Rd2YsHZ7QU-ddbq~4BuugdswVNE~cwsXtUilt0AyFJC3Ogp3uOKZDfY1QZq0AhnCDS1fdX42E7NN9dEotn66DNnuoHNiSSlbA__"
-          alt="IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years Program"
-          title="IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years
-            Program"
-          university="Punjab University"
-        />
-
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
+    <div className="max-w-7xl mx-auto p-4 ml-8 mr-8">
+      <h2 className="text-2xl font-bold  my-6">
+        Search Result Past Paper: Discrete Mathematics 3rd Semester Course Code GE-167
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+        {uploads.map((upload) => (
+          <div
+            key={upload.id}
+            className="bg-gray-100 p-4 shadow-lg shadow-gray-400 rounded-xl relative flex flex-col items-center text-center transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl cursor-pointer"
+          >
             <img
-              alt="IT-201 Object Oriented Programming Past Paper 2019 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/7cdf87305b4b418d/Screenshot%202025-04-10%20122339.png?Expires=1838876026&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=qVViOpDRluhRW9kf1sCJN4LMmTdpnuJm9kkMmdhQYikwbbZLNS2W-8s9tUll7DZ~5FFkwHNQwognBg7AwqJ9AWdhUQijRc2U61KslymeIuHt-F6tlfk3EtfDa-wZxfrAXpbhWu7QRsgRAG3bU0Ap1LYi2AalY2ofcTIvdpBy2-gPxBXFteGTkeFvygrL6UsM5yyvM3WYiRbw3pOD3cPRPkbvXbSLpye0g4kxRbLVrs8AAOyyM82IIzVIeuW5VUBsAHWd26nJyri9oxw7IJ-U-FIvHSOKKB0gFvvCeG-c8jM9eo4CudbtteSYI8~O9HkJu2AOEmxx9bIwViaWiq6XBQ__"
-              className="w-90 h-61  "
+              src={upload.image}
+              alt={upload.title}
+              className="w-full h-48 object-cover rounded-lg transition-all duration-300 ease-in-out transform hover:scale-110"
             />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2019 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">
-            UNIVERSITY OF MANAGMENT & TECHNOLOGY
-          </div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
 
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2021 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/7dd55520c98042e1/Screenshot%202025-04-10%20123308.png?Expires=1838876583&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ytu1rLOsZKp8CWwHlRxksVueW-j5duc393KY7L5gGVMGVtrGYy4xcQuQizZa40Sw1YO7huAAreh-y4GIEC20CgUqdPDmkuj1yg5TEK-NraIE1mPqUhoT8QWRsPzP1VgbsV-Hc~WeZE-fphrRf4ULa-ALnAnar5GeMbSLSbRpixC53phvR1qa~0Vb5tsbzyBWD2iV0on1ZObenbPFIW05X6xmH3tx5KZ~Wrx-9dEH9nZNnoOlpTExZIS4rtDIvBduc~3Mbhczc3Az4rerDiFzypaTHsBV7XPp796AYOYgc2GS5wi8sLIOFcvCKtIxPtgzH95XB28lxM-3o~~-NqwDDg__"
-              className="w-90 h-61  "
-            />
+            <h3 className="text-lg font-semibold my-2">{upload.title}</h3>
+            <p className="text-sm text-gray-600 mb-2">{upload.university}</p>
+            {/* Small & Centered Button */}
+            <Button className="btn mx-5 bg-blue-600 text-white px-6 py-3 text-sm rounded-full shadow-md     hover:bg-amber-500 hover:font-bold transition-all duration-200 ease-in-out transform hover:scale-105   hover:translate-y-1 cursor-pointer">
+              DOWNLOAD
+            </Button>
+
           </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2021 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">Punjab University</div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
+        ))}
       </div>
 
-      <div className="flex justify-around ">
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/a50070f65919473e/Screenshot%202025-04-10%20104809.png?Expires=1838870304&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=s0msf5v9bmeplnIhPNPwwl4BnBu~guJ4eEs~6KTzWSw~-Bm0rNE4gDAnO2aEWekNu9iMMjF0qNEaCaTN6gvWfk-JzZiUvpe6U-NaWj1Kf4Du51hQLaDeb4Dfa3Z81lufN5R~NZEuVYR4YDRDf2hg8cyMUet0O4PRtySeWdJ4jLa-L-Fop36Ei1ZLeiAgPPuhC1q0LYZETpcgNkn9pigUAyrPtGhWP66MJbzP4EU4hhGA7dAzegNw1Rd2YsHZ7QU-ddbq~4BuugdswVNE~cwsXtUilt0AyFJC3Ogp3uOKZDfY1QZq0AhnCDS1fdX42E7NN9dEotn66DNnuoHNiSSlbA__"
-              className="w-90 h-61  "
-            />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">Punjab University</div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
-
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2019 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/7cdf87305b4b418d/Screenshot%202025-04-10%20122339.png?Expires=1838876026&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=qVViOpDRluhRW9kf1sCJN4LMmTdpnuJm9kkMmdhQYikwbbZLNS2W-8s9tUll7DZ~5FFkwHNQwognBg7AwqJ9AWdhUQijRc2U61KslymeIuHt-F6tlfk3EtfDa-wZxfrAXpbhWu7QRsgRAG3bU0Ap1LYi2AalY2ofcTIvdpBy2-gPxBXFteGTkeFvygrL6UsM5yyvM3WYiRbw3pOD3cPRPkbvXbSLpye0g4kxRbLVrs8AAOyyM82IIzVIeuW5VUBsAHWd26nJyri9oxw7IJ-U-FIvHSOKKB0gFvvCeG-c8jM9eo4CudbtteSYI8~O9HkJu2AOEmxx9bIwViaWiq6XBQ__"
-              className="w-90 h-61  "
-            />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2019 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">
-            UNIVERSITY OF MANAGMENT & TECHNOLOGY
-          </div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
-
-        <div className="bg-white w-90   h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2021 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/7dd55520c98042e1/Screenshot%202025-04-10%20123308.png?Expires=1838876583&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ytu1rLOsZKp8CWwHlRxksVueW-j5duc393KY7L5gGVMGVtrGYy4xcQuQizZa40Sw1YO7huAAreh-y4GIEC20CgUqdPDmkuj1yg5TEK-NraIE1mPqUhoT8QWRsPzP1VgbsV-Hc~WeZE-fphrRf4ULa-ALnAnar5GeMbSLSbRpixC53phvR1qa~0Vb5tsbzyBWD2iV0on1ZObenbPFIW05X6xmH3tx5KZ~Wrx-9dEH9nZNnoOlpTExZIS4rtDIvBduc~3Mbhczc3Az4rerDiFzypaTHsBV7XPp796AYOYgc2GS5wi8sLIOFcvCKtIxPtgzH95XB28lxM-3o~~-NqwDDg__"
-              className="w-90 h-61  "
-            />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2021 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">Punjab University</div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
-      </div>
-
-      <div className="flex justify-around py-8 ">
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/a50070f65919473e/Screenshot%202025-04-10%20104809.png?Expires=1838870304&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=s0msf5v9bmeplnIhPNPwwl4BnBu~guJ4eEs~6KTzWSw~-Bm0rNE4gDAnO2aEWekNu9iMMjF0qNEaCaTN6gvWfk-JzZiUvpe6U-NaWj1Kf4Du51hQLaDeb4Dfa3Z81lufN5R~NZEuVYR4YDRDf2hg8cyMUet0O4PRtySeWdJ4jLa-L-Fop36Ei1ZLeiAgPPuhC1q0LYZETpcgNkn9pigUAyrPtGhWP66MJbzP4EU4hhGA7dAzegNw1Rd2YsHZ7QU-ddbq~4BuugdswVNE~cwsXtUilt0AyFJC3Ogp3uOKZDfY1QZq0AhnCDS1fdX42E7NN9dEotn66DNnuoHNiSSlbA__"
-              className="w-90 h-61  "
-            />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">Punjab University</div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
-
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2019 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/7cdf87305b4b418d/Screenshot%202025-04-10%20122339.png?Expires=1838876026&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=qVViOpDRluhRW9kf1sCJN4LMmTdpnuJm9kkMmdhQYikwbbZLNS2W-8s9tUll7DZ~5FFkwHNQwognBg7AwqJ9AWdhUQijRc2U61KslymeIuHt-F6tlfk3EtfDa-wZxfrAXpbhWu7QRsgRAG3bU0Ap1LYi2AalY2ofcTIvdpBy2-gPxBXFteGTkeFvygrL6UsM5yyvM3WYiRbw3pOD3cPRPkbvXbSLpye0g4kxRbLVrs8AAOyyM82IIzVIeuW5VUBsAHWd26nJyri9oxw7IJ-U-FIvHSOKKB0gFvvCeG-c8jM9eo4CudbtteSYI8~O9HkJu2AOEmxx9bIwViaWiq6XBQ__"
-              className="w-90 h-61  "
-            />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2019 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">
-            UNIVERSITY OF MANAGMENT & TECHNOLOGY
-          </div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
-
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2021 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/7dd55520c98042e1/Screenshot%202025-04-10%20123308.png?Expires=1838876583&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ytu1rLOsZKp8CWwHlRxksVueW-j5duc393KY7L5gGVMGVtrGYy4xcQuQizZa40Sw1YO7huAAreh-y4GIEC20CgUqdPDmkuj1yg5TEK-NraIE1mPqUhoT8QWRsPzP1VgbsV-Hc~WeZE-fphrRf4ULa-ALnAnar5GeMbSLSbRpixC53phvR1qa~0Vb5tsbzyBWD2iV0on1ZObenbPFIW05X6xmH3tx5KZ~Wrx-9dEH9nZNnoOlpTExZIS4rtDIvBduc~3Mbhczc3Az4rerDiFzypaTHsBV7XPp796AYOYgc2GS5wi8sLIOFcvCKtIxPtgzH95XB28lxM-3o~~-NqwDDg__"
-              className="w-90 h-61  "
-            />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2021 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">Punjab University</div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
-      </div>
-
-      <div className="flex justify-around py-8 ">
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/a50070f65919473e/Screenshot%202025-04-10%20104809.png?Expires=1838870304&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=s0msf5v9bmeplnIhPNPwwl4BnBu~guJ4eEs~6KTzWSw~-Bm0rNE4gDAnO2aEWekNu9iMMjF0qNEaCaTN6gvWfk-JzZiUvpe6U-NaWj1Kf4Du51hQLaDeb4Dfa3Z81lufN5R~NZEuVYR4YDRDf2hg8cyMUet0O4PRtySeWdJ4jLa-L-Fop36Ei1ZLeiAgPPuhC1q0LYZETpcgNkn9pigUAyrPtGhWP66MJbzP4EU4hhGA7dAzegNw1Rd2YsHZ7QU-ddbq~4BuugdswVNE~cwsXtUilt0AyFJC3Ogp3uOKZDfY1QZq0AhnCDS1fdX42E7NN9dEotn66DNnuoHNiSSlbA__"
-              className="w-90 h-61  "
-            />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2018 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">Punjab University</div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
-
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2019 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/7cdf87305b4b418d/Screenshot%202025-04-10%20122339.png?Expires=1838876026&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=qVViOpDRluhRW9kf1sCJN4LMmTdpnuJm9kkMmdhQYikwbbZLNS2W-8s9tUll7DZ~5FFkwHNQwognBg7AwqJ9AWdhUQijRc2U61KslymeIuHt-F6tlfk3EtfDa-wZxfrAXpbhWu7QRsgRAG3bU0Ap1LYi2AalY2ofcTIvdpBy2-gPxBXFteGTkeFvygrL6UsM5yyvM3WYiRbw3pOD3cPRPkbvXbSLpye0g4kxRbLVrs8AAOyyM82IIzVIeuW5VUBsAHWd26nJyri9oxw7IJ-U-FIvHSOKKB0gFvvCeG-c8jM9eo4CudbtteSYI8~O9HkJu2AOEmxx9bIwViaWiq6XBQ__"
-              className="w-90 h-61  "
-            />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2019 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">
-            UNIVERSITY OF MANAGMENT & TECHNOLOGY
-          </div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
-
-        <div className="bg-white w-90  h-90  shadow-md rounded-lg  text-center">
-          <div>
-            <img
-              alt="IT-201 Object Oriented Programming Past Paper 2021 ADP IT Years Program "
-              src="https://media-hosting.imagekit.io/7dd55520c98042e1/Screenshot%202025-04-10%20123308.png?Expires=1838876583&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=ytu1rLOsZKp8CWwHlRxksVueW-j5duc393KY7L5gGVMGVtrGYy4xcQuQizZa40Sw1YO7huAAreh-y4GIEC20CgUqdPDmkuj1yg5TEK-NraIE1mPqUhoT8QWRsPzP1VgbsV-Hc~WeZE-fphrRf4ULa-ALnAnar5GeMbSLSbRpixC53phvR1qa~0Vb5tsbzyBWD2iV0on1ZObenbPFIW05X6xmH3tx5KZ~Wrx-9dEH9nZNnoOlpTExZIS4rtDIvBduc~3Mbhczc3Az4rerDiFzypaTHsBV7XPp796AYOYgc2GS5wi8sLIOFcvCKtIxPtgzH95XB28lxM-3o~~-NqwDDg__"
-              className="w-90 h-61  "
-            />
-          </div>
-          <div className="text-sm text-black font-bold px-4">
-            IT-201 Object Oriented Programming Past Paper 2021 ADP IT Years
-            Program
-          </div>
-          <div className="text-orange-500">Punjab University</div>
-          <Button className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full">
-            DOWNLOAD
-          </Button>
-        </div>
-      </div>
     </div>
   );
 }
