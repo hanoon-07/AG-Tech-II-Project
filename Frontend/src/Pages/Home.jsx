@@ -32,44 +32,42 @@ const Home = () => {
           style={{ backgroundImage: "url('/Images/hero.jpg')" }}
         >
           {/* Overlay */}
-          <div className="absolute inset-0 bg-blue-100/10"></div>
+          <div className="absolute inset-0 bg-blue-100/20"></div>
 
           {/* Main Content */}
           <div className="relative z-10 text-center text-white w-full max-w-4xl">
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium mb-6 leading-tight [text-shadow:_0_4px_4px_rgb(0_0_0_/2)]">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-medium mb-10 leading-tight [text-shadow:_0_4px_4px_rgb(0_0_0_/2)]">
               Get Free University Past Papers & Tech Guidance
             </h1>
 
             {/* Search Bar */}
-            <div className="flex justify-center items-center mt-6">
-              <div className="relative w-full max-w-lg">
+            <div className="flex justify-center items-center mt-10">
+              <div className="relative w-full max-w-2xl">
                 <input
                   type="text"
                   placeholder="Search Past Papers & Tech Guidance..."
                   className="w-full p-4 pr-12 rounded-full bg-white text-black placeholder-gray-500 focus:outline-none focus:ring-0"
                 />
-                <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#2563EB] p-2 rounded-full hover:bg-blue-700">
+                <button className="absolute right-3 top-1/2 transform -translate-y-1/2 bg-[#2563EB] p-3 rounded-full hover:bg-blue-700">
                   <img
                     src="/Images/search.png"
                     alt="Search"
-                    className="w-4 h-4 cursor-pointer"
+                    className="w-5 h-5 cursor-pointer"
                   />
                 </button>
               </div>
             </div>
 
             {/* Upload Button */}
-            <p className="mt-4 text-xl [text-shadow:_0_6px_6px_rgb(0_0_0_/1)]">
-              If you want to upload study material
-            </p>
             <Button
               to="/signup"
-              className="bg-[#2563EB] hover:bg-blue-700 hover:font-bold  text-white px-6 py-3 mt-4 
-              rounded-full text-lg transition-all duration-300 ease-in-out transform hover:scale-100"
+              className="mt-10 bg-[#2563EB] hover:bg-blue-700 hover:font-bold text-white px-6 py-3 
+    rounded-full text-lg font-medium transition-all duration-300 ease-in-out transform hover:scale-100"
             >
               Wish to Upload
             </Button>
           </div>
+
         </div>
       </div>
       <RecentUploads />
