@@ -55,15 +55,15 @@ function Searchcontents() {
     <div className="bg-[#D5E3FC]">
       <br />
       <div
-        className="text-5xl font-bold text-black flex items-center justify-center"
-        style={{ textShadow: "2px 2px 6px rgba(255, 255, 255, 0.8)"     }}
+        className="text-3xl sm:text-4xl md:text-5xl font-bold text-black flex items-center justify-center px-2 text-center"
+        style={{ textShadow: "2px 2px 6px rgba(255, 255, 255, 0.8)" }}
       >
         All Past Papers
       </div>
 
       {/* Search Field */}
       <div className="flex flex-wrap items-end justify-around gap-4 p-4 rounded-lg shadow-md">
-        <div className="relative w-full mx-8">
+        <div className="relative w-full md:mx-8 mx-4">
           <label
             htmlFor="default-search"
             className="mb-2 text-sm font-medium text-gray-900 sr-only"
@@ -90,7 +90,7 @@ function Searchcontents() {
           <input
             type="search"
             id="default-search"
-            className="z-20 block w-full p-4 pl-10 pr-28 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-[#D5E4]"
+            className="block w-full p-4 pl-10 md:pr-28 pr-20 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-1 focus:ring-[#D5E4]"
             placeholder="Discrete Mathematics 3rd Semester"
             required
           />
@@ -154,26 +154,26 @@ function Papercontents() {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto p-4 ml-8 mr-8">
-      <h2 className="text-2xl font-bold  my-6">
+    <div className=" mx-auto p-4 ml-8 mr-8">
+      <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold my-3 sm:my-4 md:my-6 px-2">
         Search Result Past Paper: Discrete Mathematics 3rd Semester Course Code GE-167
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10">
         {uploads.map((upload) => (
           <div
             key={upload.id}
-            className="bg-gray-100 p-4 shadow-lg shadow-gray-400 rounded-xl relative flex flex-col items-center text-center transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl cursor-pointer"
+            className="bg-gray-100 p-3 sm:p-4 shadow-lg shadow-gray-400 rounded-xl relative flex flex-col items-center text-center transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl cursor-pointer"
           >
             <img
               src={upload.image}
               alt={upload.title}
-              className="w-full h-48 object-cover rounded-lg transition-all duration-300 ease-in-out transform hover:scale-110"
+              className="w-full h-36 sm:h-40 md:h-48 object-cover rounded-lg transition-all duration-300 ease-in-out transform hover:scale-110"
             />
 
-            <h3 className="text-lg font-semibold my-2">{upload.title}</h3>
-            <p className="text-sm text-gray-600 mb-2">{upload.university}</p>
+            <h3 className="text-base sm:text-lg font-semibold my-2 line-clamp-2">{upload.title}</h3>
+            <p className="text-xs sm:text-sm text-gray-600 mb-2">{upload.university}</p>
             {/* Small & Centered Button */}
-            <Button className="btn mx-5 bg-blue-600 text-white px-6 py-3 text-sm rounded-full shadow-md     hover:bg-amber-500 hover:font-bold transition-all duration-200 ease-in-out transform hover:scale-105   hover:translate-y-1 cursor-pointer">
+            <Button className="btn mx-auto bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm rounded-full shadow-md hover:bg-amber-500 hover:font-bold transition-all duration-200 ease-in-out transform hover:scale-105 hover:translate-y-1 cursor-pointer">
               DOWNLOAD
             </Button>
 
