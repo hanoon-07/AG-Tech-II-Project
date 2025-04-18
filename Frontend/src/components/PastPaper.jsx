@@ -5,7 +5,7 @@ function Paper() {
         <div class="flex justify-center">
             <h1 class="text-4xl font-medium flex items-center text-[#2563EB]">Upload Past Paper</h1>
         </div>
-        <form>
+        <form class="pt-4">
             <label class="pl-50 text-sm font-medium pt-4 px-4">Subject Name * </label>
             <input type="text" class="w-200 border rounded px-2 py-1 text-left" defaultValue="Discrete Mathematics"/>
             <div class="flex justify-start pt-4 pb-5">
