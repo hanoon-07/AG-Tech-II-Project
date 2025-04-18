@@ -23,7 +23,9 @@ const Layout = () => {
 
   const hiddenRoutes = ["/login", "/signup"];
   const shouldShowNavbar = !hiddenRoutes.includes(location.pathname);
-  const shouldShowFooter = !hiddenRoutes.includes(location.pathname);
+
+  // Only hide footer on /contact-us route
+  const shouldShowFooter = location.pathname !== "/contact-us" && !hiddenRoutes.includes(location.pathname);
 
   return (
     <>
