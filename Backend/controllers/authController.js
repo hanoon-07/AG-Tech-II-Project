@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel')
+const User = require('../models/User.js')
 const dotenv=require("dotenv")
 const bcrypt = require('bcryptjs');
 
@@ -11,92 +11,65 @@ console.log(process.env.JWT_SECRET)
 exports.signup = async (req, res) => {
     try {
         const { 
+            username,
             email, 
             password, 
-            confirmPassword, 
-            company,
-            companyEmail,
-            contactPerson,
-            phoneNumber,
-            website,
-            description,
-            designation,
-            address
+            mobileNumber,
+            
         } = req.body;
+        console.log("Signup Request:",req.body);
 
         // Check if both email, password and confirmPassword fields are provided
-        if (!email || !password || !confirmPassword) {
+        if (!email || !password || !username) {
             return res.status(400).json({
                 status: 'fail',
-                message: 'Email, password, and confirm password are required'
+                message: ''
             });
         }
-
-        // Check if password and confirmPassword match
-        if (password !== confirmPassword) {
-            return res.status(400).json({
-                status: 'fail',
-                message: 'Passwords do not match'
-            });
-        }
+        
+        console.log("Username, Email, and  password, are required?");
 
         // Check if user already exists
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({
                 status: 'fail',
-                message: 'User already exists with this email'
+                message: 'User already exists with this email',
             });
-        }
-
-        // Handle logo picture upload
-        let logoPicture = null; // Initialize logo picture object
-        if (req.file) {
-            logoPicture = {
-                filename: req.file.originalname,
-                path: req.file.path,
-                mimetype: req.file.mimetype
-            };
-        } else {
-            // If no file is uploaded, logoPicture remains null
-            logoPicture = null;
         }
 
         // Create the new user with email and password
         const hashedPassword = await bcrypt.hash(password, 12);
-        const newUser = await User.create({ 
-            email, 
-            password:hashedPassword,  
-            userDetails: {             // Embed userDetails directly
-                company,
-                companyEmail,          // Save company email
-                contactPerson,
-                website,
-                description,
-                designation,
-                address,
-                logoPicture,           // Include logoPicture in userDetails
-            }
+        const newUser = await User.create({
+            email,
+            password: hashedPassword,
+            username,
+            mobileNumber,
+            role: "user",
         });
+        console.log("New User Created with Hashed Password");
 
         // Generate JWT Token
         const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES_IN
+            expiresIn: process.env.JWT_EXPIRES_IN || '1d',
         });
+        console.log("JWT Token Generated");
 
-        // If both are successful, return the response
+        // Return response with the token and user data
         res.status(201).json({
             status: 'success',
             data: {
                 user: newUser,
-                token  // Return the token upon successful signup
+                token,
             }
         });
+        console.log("Response Sent");
     } catch (err) {
         res.status(400).json({
             status: 'fail',
             message: err.message,
         });
+        console.log("Error Occurred");
     }
 };
 
@@ -104,7 +77,11 @@ exports.signup = async (req, res) => {
 //! Login Controller
 exports.login = async (req, res) => {
     try {
+        console.log('Login Request');
         const { email, password } = req.body;
+
+        console.log('Email from request:', req.body);
+
 
         // Check if both fields are provided
         if (!email || !password) {
@@ -116,35 +93,45 @@ exports.login = async (req, res) => {
 
         // Find the user by email and select password
         const user = await User.findOne({ email }).select('+password');
+        console.log('Queried user:', user);
         if (!user) {
             return res.status(401).json({
                 status: 'fail',
-                message: 'Incorrect email or password'
+                message: 'Incorrect Email'
             });
         }
 
-        // Check if the password matches
-        const isPasswordCorrect = await bcrypt.compare(password, user.password);
-        if (!isPasswordCorrect) {
-            return res.status(401).json({
-                status: 'fail',
-                message: 'Incorrect email or password'
-            });
-        }
+  // Compare entered password with hashed password
+  const isPasswordCorrect = await bcrypt.compare(password, user.password);
+  if (!isPasswordCorrect) {
+      return res.status(401).json({
+          status: 'fail',
+          message: 'Incorrect Password',
+      });
+  }
 
-        // Generate JWT Token
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-            expiresIn: process.env.JWT_EXPIRES_IN
-        });
+    // 3. Generate JWT Token
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRES_IN || '1d',
+    });
 
-        res.status(200).json({
-            status: 'success',
-            token
-        });
-    } catch (err) {
-        res.status(400).json({
-            status: 'fail',
-            message: err.message,
-        });
-    }
+    // 4. Send response
+    res.status(200).json({
+      status: 'success',
+      token,
+      data: {
+        user: {
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          role: user.role,
+        },
+      },
+    });
+  } catch (err) {
+    res.status(400).json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
 };

@@ -1,10 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const authRoutes = require('./routes/authRoutes.js');
+
 const cors = require('cors');
-const authRoutes = require('./routes/authRoutes');
-const adminRoutes = require('./routes/adminRoutes');
-const vehicleRoutes = require('./routes/vehicle.routes');
 
 const app = express();
 
@@ -28,16 +27,12 @@ app.get('/', (req, res) => {
   res.send('Server running!');
 });
 
-// Routes
-app.use('/auth', authRoutes);
-app.use('/admin', adminRoutes);
-app.use('/vehicle', vehicleRoutes);
-
 // MongoDB connection using .env variable
 const api = process.env.MONGO;
 console.log("Api", api);
 
-
+// 👇 ADD THIS LINE after app.use(cors(...));
+app.use('/api/auth', authRoutes);
 mongoose
   .connect(process.env.MONGO, {
     useNewUrlParser: true,
