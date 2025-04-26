@@ -1,15 +1,18 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes.js');
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import authRoutes from './routes/authRoutes.js';
+import pastPaperRoutes from './routes/pastPaperRoutes.js';
+import bookRoutes from './routes/bookRoutes.js';
+import cors from 'cors';
 
-const cors = require('cors');
-
+// Initialize app
 const app = express();
 
 // Load environment variables
 dotenv.config();
 
+// Middlewares
 app.use(express.json());
 app.use(
   cors({
@@ -23,18 +26,22 @@ app.use(
   })
 );
 
+// Test route
 app.get('/', (req, res) => {
   res.send('Server running!');
 });
 
-// MongoDB connection using .env variable
+// API routes
+app.use('/api/auth', authRoutes);
+app.use('/api/books', bookRoutes);
+app.use('/api/pastPapers', pastPaperRoutes);
+
+// MongoDB connection
 const api = process.env.MONGO;
 console.log("Api", api);
 
-// 👇 ADD THIS LINE after app.use(cors(...));
-app.use('/api/auth', authRoutes);
 mongoose
-  .connect(process.env.MONGO, {
+  .connect(api, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
