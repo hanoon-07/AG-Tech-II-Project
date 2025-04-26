@@ -8,6 +8,8 @@ export default function AuthPage() {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [imageLoaded, setImageLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
 
   // Because images are loaded more quickly
   useEffect(() => {
@@ -32,11 +34,41 @@ export default function AuthPage() {
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center bg-white">
+      <div className="flex items-center justify-center h-screen bg-white">
         <ClimbingBoxLoader color="#2563EB" loading={true} size={15} />
       </div>
     );
   }
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    setEmailError(''); // clear error as user types
+  };
+
+  
+  const validateEmail = (e) => {
+    const value = e.target.value;
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // email regex
+
+    if (!emailRegex.test(value)) {
+      setEmailError('Please enter a valid email address');
+    } else {
+      setEmailError('');
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    //email check
+    if (!email) {
+      setEmailError('Email is required');
+    }
+
+    //password check.
+  };
+
+
 
   return (
     <>
@@ -51,19 +83,19 @@ export default function AuthPage() {
           transition: "background-image 0.5s ease-in-out",
         }}
       >
-        <div className="max-w-md w-full mx-auto">
-          <form
+        <div className="w-full max-w-md mx-auto">
+          <form onSubmit={handleSubmit} noValidate
             className="bg-white/70 backdrop-blur-md rounded-2xl p-6 
   shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)]"
           >
             <div className="mb-4">
-              <h3 className="text-gray-800 text-3xl font-extrabold">Login</h3>
-              <p className="text-sm text-gray-800 mt-3">
+              <h3 className="text-3xl font-extrabold text-gray-800">Login</h3>
+              <p className="mt-3 text-sm text-gray-800">
                 You have no Account?{" "}
                 <a
                   href=""
                   onClick={() => navigate("/signup")}
-                  className="text-blue-600 font-medium"
+                  className="font-medium text-blue-600"
                 >
                   Create an account
                 </a>
@@ -74,22 +106,26 @@ export default function AuthPage() {
             <div>
               <div className="relative flex items-center">
                 <input
-                  type="text"
-                  placeholder="Username"
-                  id="username"
+                  type="email"
+                  placeholder="Email"
+                  id="email"
                   required
-                  className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
+                  className="w-full px-2 py-3 text-sm text-gray-800 bg-transparent border-b border-gray-400 outline-none focus:border-gray-800 placeholder:text-gray-800"
+                  onChange={handleEmailChange}
+                  onBlur={validateEmail} 
                 />
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="#333"
-                  stroke="#333"
-                  className="w-[18px] h-[18px] absolute right-2"
-                  viewBox="0 0 24 24"
+
+                <svg xmlns="http://www.w3.org/2000/svg"
+                className="w-[18px] h-[18px] absolute right-2"
+                fill="#333"
+                 viewBox="0 0 24 24" 
                 >
-                  <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.314 0-9 1.657-9 5v1h18v-1c0-3.343-5.686-5-9-5z" />
+                <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z"></path>
                 </svg>
               </div>
+              {emailError && (
+                <p className="mt-1 text-sm text-red-500">{emailError}</p>
+                )}
             </div>
 
             {/* Password Field */}
@@ -100,7 +136,7 @@ export default function AuthPage() {
                   placeholder="Password"
                   id="password"
                   required
-                  className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
+                  className="w-full px-2 py-3 text-sm text-gray-800 bg-transparent border-b border-gray-400 outline-none focus:border-gray-800 placeholder:text-gray-800"
                 />
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +155,7 @@ export default function AuthPage() {
             <div className="mt-10 mb-4">
               <Link to="/home">
                 <button
-                  type="button"
+                  type="submit"
                   // disabled={loading}
                   // onClick={handleClick}
                   className="w-full py-2.5 px-4 text-sm font-semibold tracking-wider cursor-pointer
