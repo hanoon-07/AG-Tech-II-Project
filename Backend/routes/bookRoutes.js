@@ -1,11 +1,12 @@
-import express from 'express';
-import { 
+const express = require('express');
+
+const { 
   uploadBook,
   getAllBooks,
   getSingleBook,
   updateBook,
   deleteBook
-} from '../controllers/bookController.js';
+}  = require('../controllers/bookController.js');
 
 const router = express.Router();
 
@@ -24,4 +25,4 @@ router.put('/:id', updateBook);
 // Delete a Book by ID
 router.delete('/:id', deleteBook);
 
-export default router;
+module.exports = router;

@@ -28,7 +28,7 @@ function PaperUploadForm() {
 
   return <div>
     <Navbar />
-    <div class="pt-12 pl-6 pb-6 flex justify-start">
+    <div className="pt-12 pl-6 pb-6 flex justify-start">
 
     </div>
     {/* Main Title */}
@@ -68,7 +68,7 @@ function PaperUploadForm() {
       </h2>
     </div>
 
-    <hr class="border-t-2 w-7/10 mx-auto border-gray-300 pl-20 pr-20 my-9">
+    <hr className="border-t-2 w-7/10 mx-auto border-gray-300 pl-20 pr-20 my-9">
     </hr>
 
     <div>

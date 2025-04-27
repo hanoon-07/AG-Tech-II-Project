@@ -1,4 +1,4 @@
-import bookModel from '../models/bookModel.js';
+import bookModel from '../models/Books.js';
 
 // Create a Book
 export const uploadBook = async (req, res) => {
