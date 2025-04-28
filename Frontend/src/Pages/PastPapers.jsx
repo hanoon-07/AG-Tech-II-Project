@@ -109,6 +109,7 @@ function Searchcontents() {
 }
 
 
+
 function Papercontents() {
   // Dummy Values
   const uploads = [
@@ -153,6 +154,24 @@ function Papercontents() {
     },
   ];
 
+const [currentPage, setCurrentPage] = useState(1);
+const itemsPerPage = 3; 
+
+const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentUploads = uploads.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(uploads.length / itemsPerPage);
+
+  const goToNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
+
+  const goToPrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
+
+
   return (
     <div className=" mx-auto p-4 ml-8 mr-8">
       <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold my-3 sm:my-4 md:my-6 px-2">
@@ -180,8 +199,30 @@ function Papercontents() {
           </div>
         ))}
       </div>
+      <div className="flex justify-center items-center gap-4 mt-8">
+        <button
+          onClick={goToPrevPage}
+          disabled={currentPage === 1}
+          className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-400"
+        >
+          Previous
+        </button>
+
+        <span className="font-semibold">
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <button
+          onClick={goToNextPage}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 bg-blue-600 text-white rounded disabled:bg-gray-400"
+        >
+          Next
+        </button>
+      </div>
 
     </div>
+    
   );
 }
 
