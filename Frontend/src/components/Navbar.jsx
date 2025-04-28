@@ -81,24 +81,24 @@ const Navbar = () => {
           {/* Mobile Menu Icon */}
           <FiAlignJustify
             onClick={handleToggle}
-            className="md:hidden text-3xl cursor-pointer text-white"
+            className="md:hidden text-3xl cursor-pointer text-white  "
           />
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="fixed inset-0 bg-white z-50 flex flex-col items-center justify-center transition-all duration-500 ease-in-out overflow-hidden">
+        <div className="bg-blue-600 fixed inset-0  z-50 flex flex-col items-center justify-center transition-all duration-500 ease-in-out overflow-hidden">
           <ImCross
             onClick={handleToggle}
-            className="absolute top-5 right-5 text-3xl cursor-pointer hover:rotate-90 transition-transform duration-300"
+            className="absolute top-5 right-5 text-3xl cursor-pointer hover:rotate-90 transition-transform duration-300 text-white"
           />
           <ul className="flex flex-col items-center gap-6 text-lg text-black">
             <li>
               <Link
                 to="/"
                 onClick={handleToggle}
-                className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300"
+                className="nav-link text-white  py-2 px-4 rounded-lg  transition-all duration-300"
               >
                 Home
               </Link>
@@ -107,7 +107,7 @@ const Navbar = () => {
               <Link
                 to="/past-papers"
                 onClick={handleToggle}
-                className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300"
+                className="nav-link text-white   py-2 px-4 rounded-lg  transition-all duration-300"
               >
                 Past Papers
               </Link>
@@ -116,7 +116,7 @@ const Navbar = () => {
               <Link
                 to="/course-book"
                 onClick={handleToggle}
-                className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300"
+                className="nav-link text-white  py-2 px-4 rounded-lg  transition-all duration-300"
               >
                 Course Book
               </Link>
@@ -125,7 +125,7 @@ const Navbar = () => {
               <Link
                 to="/tech-guidance"
                 onClick={handleToggle}
-                className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300"
+                className="text-white nav-link   py-2 px-4 rounded-lg  transition-all duration-300"
               >
                 Tech Guidance
               </Link>
@@ -134,7 +134,7 @@ const Navbar = () => {
               <Link
                 to="/contact-us"
                 onClick={handleToggle}
-                className="text-black hover:text-blue-900 py-2 px-4 rounded-lg hover:bg-gray-100 transition-all duration-300"
+                className="text-white nav-link   py-2 px-4 rounded-lg transition-all duration-300"
               >
                 Contact Us
               </Link>
