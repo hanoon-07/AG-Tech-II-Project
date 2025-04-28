@@ -96,7 +96,7 @@ function SearchContents() {
           />
             <button
             type="submit"
-            className="cursor-pointer absolute right-1 xs:right-1.5 sm:right-2.5 bottom-1 xs:bottom-1.5 sm:bottom-2.5 text-white bg-blue-700 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-[10px] xs:text-xs sm:text-sm px-1.5 xs:px-2 sm:px-4 py-0.5 xs:py-1 sm:py-2"
+            className="cursor-pointer absolute right-2.5 bottom-2.5 text-white bg-blue-700 hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2"
           >
             Search
           </button>
