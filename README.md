@@ -6,18 +6,13 @@ A MERN Stack platform for accessing and managing university study materials, inc
 ## Top Contributor for Assigning the 💲 Rewards 
 ## 📌 Project Breakdown  
 
-### 🔹 Roles  
+### 🔹 Roles   
 
-- **Super Admin**  
-  - Uploads materials (books, outlines, past papers).  
-  - Manages Admins.  
-  - Full control of the system.  
-
-- **Admin**  
+- **User Login**  
   - Uploads materials (books, outlines, past papers).  
   - Manages content but does not control Super Admins or other Admins.  
 
-- **User**  
+- **User No-Login**  
   - No login required.  
   - Can browse/download materials.  
   - View the latest uploads (PU, BZU, etc.).  
@@ -51,6 +46,10 @@ Thanks to these amazing people for their contributions:
 |--------|----------|----------------|
 | <img src="https://avatars.githubusercontent.com/u/128673394?s=96&v=4" width="50px;" /> | [@Ali Gates](https://github.com/AliGates915) | 💻 Project Admin, 🛠️ Manage Project |
 | <img src="https://avatars.githubusercontent.com/u/115923680?v=4" width="50px;" /> | [@Sathwik61](https://github.com/Sathwik61) | Fixed SignUp and Login Routes (#27) |
+| <img src="https://avatars.githubusercontent.com/u/163735565?v=4" width="50px;" /> | [@walihemat1](https://github.com/walihemat1) | Fixes Multiple Issues & Add New Features |
+| <img src="https://avatars.githubusercontent.com/u/163309931?v=4" width="50px;" /> | [@Darshankhnvr](https://github.com/Darshankhnvr) | Fix Issue Navbar #47 |
+| <img src="https://avatars.githubusercontent.com/u/101133391?v=4" width="50px;" /> | [@Darshankhnvr](https://github.com/Vandana-Ss) | Fix Issue #41 |
+| <img src="https://avatars.githubusercontent.com/u/115923680?v=4" width="50px;" /> | [@Sathwik61](https://github.com/Sathwik61) | Sign & Login #27 |
 > Want to be featured here? Contribute to the project and submit a PR or join discussions in Issues!
 
 ---
