@@ -49,7 +49,8 @@ Thanks to these amazing people for their contributions:
 | <img src="https://avatars.githubusercontent.com/u/163735565?v=4" width="50px;" /> | [@walihemat1](https://github.com/walihemat1) | Fixes Multiple Issues & Add New Features |
 | <img src="https://avatars.githubusercontent.com/u/163309931?v=4" width="50px;" /> | [@Darshankhnvr](https://github.com/Darshankhnvr) | Fix Issue Navbar #47 |
 | <img src="https://avatars.githubusercontent.com/u/101133391?v=4" width="50px;" /> | [@Darshankhnvr](https://github.com/Vandana-Ss) | Fix Issue #41 |
-| <img src="https://avatars.githubusercontent.com/u/115923680?v=4" width="50px;" /> | [@Sathwik61](https://github.com/Sathwik61) | Sign & Login #27 |
+| <img src="https://avatars.githubusercontent.com/u/115923680?v=4" width="50px;" /> | [@Sathwik61](https://github.com/Sathwik61) | Sign & Login Issue #27 |
+| <img src="https://avatars.githubusercontent.com/u/203383767?v=4" width="50px;" /> | [@nneha19](https://github.com/nneha19) | Issue #41 & #49  |
 > Want to be featured here? Contribute to the project and submit a PR or join discussions in Issues!
 
 ---
