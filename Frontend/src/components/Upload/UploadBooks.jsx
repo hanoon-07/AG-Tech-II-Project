@@ -42,10 +42,12 @@ function UploadBooks() {
             toast.error("Please upload book.");
             return;
         }
+        toast.info("Uploading book, please wait... 📚");
 
-
+        console.log("Data sent few seconds wait...");
+        
         setIsUploading(true);
-
+        let thumbnail;
         try {
             const uploadedFileUrls = [];
 
@@ -59,21 +61,27 @@ function UploadBooks() {
                 const uploadRes = await axios.post(uploadUrl, data);
                 const fileUrl = uploadRes.data.secure_url;
                 uploadedFileUrls.push(fileUrl);
+
+                // Thumbnail
+                const fileId = fileUrl.split('/upload/')[1].replace('.pdf', ''); // remove the pdf extension
+                thumbnail = `https://res.cloudinary.com/daexycwc7/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/${fileId}.jpg`;
             }
 
+            console.log("Thumbnail URL:", thumbnail);
             console.log("All file URLs:", uploadedFileUrls);
 
             // Send all file URLs together to backend
             const payload = {
                 bookName,
                 authorName,
-                courseBook,
-                fileUrls: uploadedFileUrls, // Use plural name
+                relatedCourseName: courseBook,
+                bookUpload: uploadedFileUrls,
+                bookThumbnail: thumbnail, // Use plural name
             };
 
             console.log("Data Sent to the backend :", payload);
 
-            await axios.post("/api/books", payload);
+            await axios.post("http://localhost:8000/api/books", payload);
 
             toast.success("Papers uploaded successfully!");
             setAuthorName("");
@@ -175,7 +183,9 @@ function UploadBooks() {
 
                     {/* Submit Button */}
                     <div className="flex justify-center mb-5">
-                        <button type="submit" className="cursor-pointer px-6 py-2 rounded-full text-white bg-[#2563EB] hover:bg-blue-800">
+                        <button type="submit" className="cursor-pointer px-6 py-2 rounded-full text-white bg-[#2563EB] hover:bg-blue-800"
+                         disabled={isUploading}
+                        >
                             {isUploading ? "Uploading..." : "Upload Book"}
                         </button>
                     </div>
