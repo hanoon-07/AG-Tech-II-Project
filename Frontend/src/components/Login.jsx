@@ -30,6 +30,23 @@ export default function AuthPage() {
     return () => clearTimeout(timer);
   }, []);
 
+  //Jaany login function
+  const handleLogin = (e) =>{
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value
+
+    if(!email || !password){
+      alert("Please enter both email and password")
+      return;
+    }
+
+    console.log("Logging in with: ",email, password);
+
+    navigate("/");
+  }
+
   if (loading) {
     return (
       <div className="h-screen flex items-center justify-center bg-white">
@@ -53,6 +70,7 @@ export default function AuthPage() {
       >
         <div className="max-w-md w-full mx-auto">
           <form
+            onSubmit={handleLogin}
             className="bg-white/70 backdrop-blur-md rounded-2xl p-6 
   shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)]"
           >
@@ -70,13 +88,14 @@ export default function AuthPage() {
               </p>
             </div>
 
-            {/* Username Field */}
+            {/* Email Field */}
             <div>
               <div className="relative flex items-center">
                 <input
-                  type="text"
-                  placeholder="Username"
-                  id="username"
+                  type="email"
+                  placeholder="Email"
+                  id="email"
+                  name="email"
                   required
                   className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
                 />
@@ -87,7 +106,7 @@ export default function AuthPage() {
                   className="w-[18px] h-[18px] absolute right-2"
                   viewBox="0 0 24 24"
                 >
-                  <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.314 0-9 1.657-9 5v1h18v-1c0-3.343-5.686-5-9-5z" />
+                  <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
                 </svg>
               </div>
             </div>
@@ -117,9 +136,10 @@ export default function AuthPage() {
 
             {/* Login Button */}
             <div className="mt-10 mb-4">
-              <Link to="/home">
+              {/*<Link to="/home">*/}
                 <button
-                  type="button"
+                  type="submit"
+                  //type="button"
                   // disabled={loading}
                   // onClick={handleClick}
                   className="w-full py-2.5 px-4 text-sm font-semibold tracking-wider cursor-pointer
@@ -127,7 +147,7 @@ export default function AuthPage() {
                 >
                   Login
                 </button>
-              </Link>
+              {/*</Link>*/}
             </div>
             <div className="flex justify-center text-gray-500 text-sm hover:text-[#0071c2]">
               <a href="https://aligates-portfolio.netlify.app/" target="blank">
