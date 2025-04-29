@@ -15,13 +15,6 @@ export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [imageLoaded, setImageLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [phoneError, setPhoneError] = useState("");
-  const [errors, setErrors] = useState({
-    username: "",
-    email: "",
-    password: "",
-    phone: ""
-  });
 
   // Because images are loaded more quickly
   useEffect(() => {
@@ -57,57 +50,18 @@ export default function SignUpPage() {
     setFormData({ ...formData, [name]: value })
   }
 
-  //handle phone number input
-  const handlePhone = (e) => {
-    const { name, value } = e.target;
-    if (/^\d{0,10}$/.test(value)) {
-      setFormData({ ...formData, [name]: value })
-      setPhoneError("");
-      if (/[a-zA-Z]/.test(value)) {
-        setPhoneError("Phone number can only contain digits.")
-      }
-    }
+  //Issue 44 - Handle Phone no. input
+  const handlePhone = (e) =>{
+    const {name, value} = e.target
+    setFormData({...formData, [name]: value})
   }
 
   // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault();
-    if (validateForm()) {
-      console.log("Form Submitted", formData);
-      navigate("/");
-    } else {
-      alert("Please fill out the form correctly.");
-    }
-  };
-
-  const validateForm = () => {
-    const newErrors = { username: "", email: "", password: "", phone: "" };
-    let valid = true;
-  
-    if (!formData.username) {
-      newErrors.username = "Username is required.";
-      valid = false;
-    }
-    if (!formData.email) {
-      newErrors.email = "Email is required.";
-      valid = false;
-    }
-    if (!formData.password) {
-      newErrors.password = "Password is required.";
-      valid = false;
-    } else if (formData.password.length < 8) {
-      newErrors.password = "Password must be at least 8 characters.";
-      valid = false;
-    }
-    if (!formData.phone || phoneError) {
-      newErrors.phone = phoneError || "Phone number is required.";
-      valid = false;
-    }
-  
-    setErrors(newErrors);
-    return valid;
-  };
-  
+    e.preventDefault()
+    // You can implement form submission logic here, e.g., API call to register the user
+    console.log("Form Submitted", formData)
+  }
 
   return (
     <>
@@ -141,8 +95,6 @@ export default function SignUpPage() {
               </p>
             </div>
 
-
-
             {/* Username Field */}
             <div className="mt-6">
               <div className="relative flex items-center">
@@ -151,7 +103,6 @@ export default function SignUpPage() {
                   placeholder="Enter Username"
                   value={formData.username}
                   onChange={handleChange}
-                  name="username"
                   id="username"
                   required
                   className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
@@ -166,9 +117,6 @@ export default function SignUpPage() {
                   <path d="M12 12c2.761 0 5-2.239 5-5s-2.239-5-5-5-5 2.239-5 5 2.239 5 5 5zm0 2c-3.314 0-9 1.657-9 5v1h18v-1c0-3.343-5.686-5-9-5z" />
                 </svg>
               </div>
-              {errors.username && (
-                <p className="text-red-600 text-xs mt-1">{errors.username}</p>
-              )}
             </div>
 
             {/* Email Field */}
@@ -179,13 +127,11 @@ export default function SignUpPage() {
                   placeholder="Enter Email"
                   value={formData.email}
                   onChange={handleChange}
-                  name="email"
                   id="email"
                   required
                   className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
                 />
                 <svg
-
                   xmlns="http://www.w3.org/2000/svg"
                   fill="#333"
                   stroke="#333"
@@ -195,9 +141,6 @@ export default function SignUpPage() {
                   <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
                 </svg>
               </div>
-              {errors.email && (
-                <p className="text-red-600 text-xs mt-1">{errors.email}</p>
-              )}
             </div>
 
             {/* Phone Number Field */}
@@ -207,10 +150,9 @@ export default function SignUpPage() {
                   type="tel"
                   placeholder="Enter Phone Number"
                   value={formData.phone}
-                  onChange={handlePhone}
-                  name="phone"
+                  onChange={handleChange}
+                  pattern="\d{10}"
                   id="phone"
-                  pattern="^\d{10}$"
                   required
                   className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
                 />
@@ -224,9 +166,6 @@ export default function SignUpPage() {
                   <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.5 22 2 13.5 2 3.5a1 1 0 011-1H6.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z" />
                 </svg>
               </div>
-              {errors.phone && (
-                <p className="text-red-600 text-xs mt-1">{errors.phone}</p>
-              )}
             </div>
 
             {/* Password Field */}
@@ -235,9 +174,6 @@ export default function SignUpPage() {
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
-                  name="password"
-                  value={formData.password}
-                  onChange={handleChange}
                   id="password"
                   required
                   className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
@@ -253,9 +189,6 @@ export default function SignUpPage() {
                   <path d="M64 104C22.127 104 1.367 67.496.504 65.943a4 4 0 0 1 0-3.887C1.367 60.504 22.127 24 64 24s62.633 36.504 63.496 38.057a4 4 0 0 1 0 3.887C126.633 67.496 105.873 104 64 104zM8.707 63.994C13.465 71.205 32.146 96 64 96c31.955 0 50.553-24.775 55.293-31.994C114.535 56.795 95.854 32 64 32 32.045 32 13.447 56.775 8.707 63.994zM64 88c-13.234 0-24-10.766-24-24s10.766-24 24-24 24 10.766 24 24-10.766 24-24 24zm0-40c-8.822 0-16 7.178-16 16s7.178 16 16 16 16-7.178 16-16-7.178-16-16-16z"></path>
                 </svg>
               </div>
-              {errors.password && (
-                <p className="text-red-600 text-xs mt-1">{errors.password}</p>
-              )}
             </div>
 
 
@@ -269,20 +202,19 @@ export default function SignUpPage() {
             </div>
             {/* Login Button */}
             <div className="mt-10 mb-4">
-              {/*<Link to="/home">*/}
-              <button
-                type="submit"
-                //type="button"
-                // disabled={loading}
-                // onClick={handleClick}
-                className="w-full py-2.5 px-4 text-sm font-semibold tracking-wider cursor-pointer
+              <Link to="/home">
+                <button
+                  type="button"
+                  // disabled={loading}
+                  // onClick={handleClick}
+                  className="w-full py-2.5 px-4 text-sm font-semibold tracking-wider cursor-pointer
                         rounded-full text-white bg-[#0071c2] hover:bg-[#3a90f3] focus:outline-none"
-              >
-                Signup
-              </button>
-              {/*</Link>*/}
+                >
+                  Signup
+                </button>
+              </Link>
             </div>
-
+            
           </form>
         </div>
       </div>

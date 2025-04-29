@@ -10,6 +10,8 @@ export default function AuthPage() {
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState('');
   const [emailError, setEmailError] = useState('');
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
   // Because images are loaded more quickly
   useEffect(() => {
@@ -32,23 +34,6 @@ export default function AuthPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  //Jaany login function
-  const handleLogin = (e) =>{
-    e.preventDefault();
-
-    const email = e.target.email.value;
-    const password = e.target.password.value
-
-    if(!email || !password){
-      alert("Please enter both email and password")
-      return;
-    }
-
-    console.log("Logging in with: ",email, password);
-
-    navigate("/");
-  }
-
   if (loading) {
     return (
       <div className="flex items-center justify-center h-screen bg-white">
@@ -62,6 +47,10 @@ export default function AuthPage() {
     setEmailError(''); // clear error as user types
   };
 
+  const handlePasswordChange = (e) =>{
+    setPassword(e.target.value);
+    setPasswordError('');
+  };
   
   const validateEmail = (e) => {
     const value = e.target.value;
@@ -73,6 +62,42 @@ export default function AuthPage() {
       setEmailError('');
     }
   };
+
+  const validatePassword = () =>{
+    if(password.length < 6){
+      setPasswordError('Password must be atleast 6 characters long.')
+    }
+    else{
+      setPasswordError('');
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  
+    // Email validation
+    if (!email) { // Check if the email is empty
+      setEmailError('Email is required');
+    } else if (!emailError) { // Check if email is valid (no error)
+      setEmailError('');
+    }
+  
+    // Password validation
+    if (!password) { // Check if the password is empty
+      setPasswordError('Password is required');
+    } else if (password.length < 6) { // Check if the password length is less than 6 characters
+      setPasswordError('Password must be at least 6 characters long');
+    } else {
+      setPasswordError(''); // Clear the password error if the password is valid
+    }
+  
+    // Proceed only if there are no validation errors
+    if (!emailError && !passwordError && email && password) {
+      navigate("/"); // Navigate to homepage if valid credentials
+    }
+  };
+  
+
 
 
   return (
@@ -88,9 +113,8 @@ export default function AuthPage() {
           transition: "background-image 0.5s ease-in-out",
         }}
       >
-        <div className="max-w-md w-full mx-auto">
-          <form
-            onSubmit={handleLogin}
+        <div className="w-full max-w-md mx-auto">
+          <form onSubmit={handleSubmit} noValidate
             className="bg-white/70 backdrop-blur-md rounded-2xl p-6 
   shadow-[0_2px_16px_-3px_rgba(6,81,237,0.3)]"
           >
@@ -108,14 +132,13 @@ export default function AuthPage() {
               </p>
             </div>
 
-            {/* Email Field */}
+            {/* Username Field */}
             <div>
               <div className="relative flex items-center">
                 <input
                   type="email"
                   placeholder="Email"
                   id="email"
-                  name="email"
                   required
                   className="w-full px-2 py-3 text-sm text-gray-800 bg-transparent border-b border-gray-400 outline-none focus:border-gray-800 placeholder:text-gray-800"
                   onChange={handleEmailChange}
@@ -127,9 +150,7 @@ export default function AuthPage() {
                 fill="#333"
                  viewBox="0 0 24 24" 
                 >
-
                 <path d="M20 4H4c-1.103 0-2 .897-2 2v12c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V6c0-1.103-.897-2-2-2zm0 2v.511l-8 6.223-8-6.222V6h16zM4 18V9.044l7.386 5.745a.994.994 0 0 0 1.228 0L20 9.044 20.002 18H4z"></path>
-
                 </svg>
               </div>
               {emailError && (
@@ -144,6 +165,7 @@ export default function AuthPage() {
                   type={showPassword ? "text" : "password"} // Toggle between 'text' and 'password'
                   placeholder="Password"
                   id="password"
+                  onChange={handlePasswordChange}
                   required
                   className="w-full px-2 py-3 text-sm text-gray-800 bg-transparent border-b border-gray-400 outline-none focus:border-gray-800 placeholder:text-gray-800"
                 />

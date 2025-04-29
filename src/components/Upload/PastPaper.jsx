@@ -8,7 +8,6 @@ function Paper() {
     const [subject, setSubject] = useState("");
     const [code, setCode] = useState("");
     const [year, setYear] = useState("");
-    const [universityName, setUniversityName] = useState("");
     const [isUploading, setIsUploading] = useState(false);
 
     const handleFileSelect = (event) => {
@@ -50,7 +49,7 @@ function Paper() {
         }
       
         setIsUploading(true);
-        let thumbnail; 
+      
         try {
           const uploadedFileUrls = [];
       
@@ -64,30 +63,21 @@ function Paper() {
             const uploadRes = await axios.post(uploadUrl, data);
             const fileUrl = uploadRes.data.secure_url;
             uploadedFileUrls.push(fileUrl);
-
-          const fileId = fileUrl.split('/upload/')[1].replace('.pdf', ''); // remove the pdf extension
-          thumbnail = `https://res.cloudinary.com/daexycwc7/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/${fileId}.jpg`;
           }
-
-          console.log("Thumbnail URL:", thumbnail);
-
-
       
           console.log("All file URLs:", uploadedFileUrls);
       
           // Send all file URLs together to backend
           const payload = {
-            subjectName : subject,
-            courseCode  : code,
+            subject,
+            code,
             year,
-            universityName,
-            paperUpload: uploadedFileUrls, 
-            paperThumbnail : thumbnail, 
+            fileUrls: uploadedFileUrls, // Use plural name
           };
           
           console.log("Data Sent to the backend :", payload);
 
-          await axios.post("http://localhost:8000/api/pastPapers", payload);
+          await axios.post("/api/books", payload);
       
           toast.success("Papers uploaded successfully!");
           setSubject("");
@@ -147,12 +137,7 @@ function Paper() {
 
                 <div className="mb-4">
                     <label className="block text-sm font-medium mb-2">University Name</label>
-                    <input 
-                        type="text" 
-                        className="w-full border rounded px-3 py-2" 
-                        value={universityName}
-                        onChange={(e) => setUniversityName(e.target.value)}
-                    />
+                    <input type="text" className="w-full border rounded px-3 py-2" />
                 </div>
 
                 <div className="mb-6">
