@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom"
 import { ClimbingBoxLoader } from "react-spinners";
 
-
+//temporary comment
 export default function SignUpPage() {
   const navigate = useNavigate() // Hook to navigate to another page
   const [formData, setFormData] = useState({
