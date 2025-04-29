@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { ClockLoader } from "react-spinners";
+
 import axios from "axios";
 
 function Paper() {
@@ -50,43 +52,45 @@ function Paper() {
         }
       
         setIsUploading(true);
-        let thumbnail; 
+        let thumbnail;
+      
         try {
           const uploadedFileUrls = [];
       
           for (const file of selectedFiles) {
+            if (file.size > 100 * 1024 * 1024) {
+              toast.error("File too large! Must be under 100MB.");
+              setIsUploading(false);
+              return;
+            }
+      
             const data = new FormData();
             data.append("file", file);
             data.append("upload_preset", "upload");
+            
       
             const uploadUrl = "https://api.cloudinary.com/v1_1/daexycwc7/auto/upload";
-      
+            
             const uploadRes = await axios.post(uploadUrl, data);
+            console.log("Upload response:", uploadRes.data);
+            
             const fileUrl = uploadRes.data.secure_url;
             uploadedFileUrls.push(fileUrl);
-
-          const fileId = fileUrl.split('/upload/')[1].replace('.pdf', ''); // remove the pdf extension
-          thumbnail = `https://res.cloudinary.com/daexycwc7/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/${fileId}.jpg`;
+      
+            // Optional: create a preview thumbnail (for image/pdf first page)
+            const fileId = fileUrl.split('/upload/')[1].replace(/\.(pdf|mp4|jpg|png)$/, '');
+            thumbnail = `https://res.cloudinary.com/daexycwc7/image/upload/w_1000,ar_1:1,c_fill,g_auto,e_art:hokusai/${fileId}.jpg`;
           }
-
-          console.log("Thumbnail URL:", thumbnail);
-
-
       
-          console.log("All file URLs:", uploadedFileUrls);
-      
-          // Send all file URLs together to backend
           const payload = {
-            subjectName : subject,
-            courseCode  : code,
+            subjectName: subject,
+            courseCode: code,
             year,
             universityName,
-            paperUpload: uploadedFileUrls, 
-            paperThumbnail : thumbnail, 
+            paperUpload: uploadedFileUrls,
+            paperThumbnail: thumbnail,
           };
-          
-          console.log("Data Sent to the backend :", payload);
-
+      
           await axios.post("http://localhost:8000/api/pastPapers", payload);
       
           toast.success("Papers uploaded successfully!");
@@ -104,9 +108,22 @@ function Paper() {
       
       
       
+      
+      
 
     return (
         <>
+        {isUploading && (
+                    <div className="fixed inset-0 z-50 flex items-center justify-center bg-white/30 backdrop-blur-sm">
+                        <div className="text-center">
+                        <ClockLoader color="#328deb" size={100} speedMultiplier={1} />
+                        <p className="mt-4 text-blue-600 text-lg font-semibold">
+                            
+                        </p>
+                        </div>
+                    </div>
+                )}
+        
             <ToastContainer position="top-right" />
 
             <div className="flex justify-center">
