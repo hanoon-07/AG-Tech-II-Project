@@ -43,18 +43,18 @@ A MERN Stack platform for accessing and managing university study materials, inc
 
 Thanks to these amazing people for their contributions:
 
-| Avatar | Username | Contributions |
-|--------|----------|----------------|
-| <img src="https://avatars.githubusercontent.com/u/128673394?s=96&v=4" width="50px;" /> | [@Ali Gates](https://github.com/AliGates915) | 💻 Project Admin, 🛠️ Manage Project |
-| <img src="https://avatars.githubusercontent.com/u/122592730?v=4" width="50px;" /> | [@shakeelahmadcoder](https://github.com/shakeelahmadcoder) | Build the Home Page |
-| <img src="https://avatars.githubusercontent.com/u/115923680?v=4" width="50px;" /> | [@Sathwik61](https://github.com/Sathwik61) | Fixed SignUp and Login Routes (#27) |
-| <img src="https://avatars.githubusercontent.com/u/163735565?v=4" width="50px;" /> | [@walihemat1](https://github.com/walihemat1) |  |
-| <img src="https://avatars.githubusercontent.com/u/153019955?v=4" width="50px;" /> | [@pppporj354](https://github.com/pppporj354) |  Fixes Multiple Issues |
-| <img src="https://avatars.githubusercontent.com/u/140831705?v=4" width="50px;" /> | [@roseg769](https://github.com/roseg769) |  Documentation set |
-| <img src="https://avatars.githubusercontent.com/u/163309931?v=4" width="50px;" /> | [@Darshankhnvr](https://github.com/Darshankhnvr) | Fix Issue Navbar #47 |
-| <img src="https://avatars.githubusercontent.com/u/203383767?v=4" width="50px;" /> | [@nneha19](https://github.com/nneha19) | Issue #41 & #49  |
-| <img src="https://avatars.githubusercontent.com/u/157229547?v=4" width="50px;" /> | [@royalsrivastavagithub](https://github.com/royalsrivastavagithub) |  Fix issue #54 |
-| <img src="https://avatars.githubusercontent.com/u/101133391?v=4" width="50px;" /> | [@Vandana-Ss](https://github.com/Vandana-Ss) |  Fixes Multiple Issues & Add New Features |
+|  No. | Avatar | Username | Contributions |
+|------|--------|----------|---------------|
+|  1  | <img src="https://avatars.githubusercontent.com/u/128673394?s=96&v=4" width="50px;" /> | [@Ali Gates](https://github.com/AliGates915) | 💻 Project Admin, 🛠️ Manage Project |
+|  2  | <img src="https://avatars.githubusercontent.com/u/122592730?v=4" width="50px;" /> | [@shakeelahmadcoder](https://github.com/shakeelahmadcoder) | Build the Home Page |
+|  3  | <img src="https://avatars.githubusercontent.com/u/115923680?v=4" width="50px;" /> | [@Sathwik61](https://github.com/Sathwik61) | Fixed SignUp and Login Routes (#27) |
+|  4  | <img src="https://avatars.githubusercontent.com/u/163735565?v=4" width="50px;" /> | [@walihemat1](https://github.com/walihemat1) |  |
+|  5  | <img src="https://avatars.githubusercontent.com/u/153019955?v=4" width="50px;" /> | [@pppporj354](https://github.com/pppporj354) |  Fixes Multiple Issues |
+|  6  | <img src="https://avatars.githubusercontent.com/u/140831705?v=4" width="50px;" /> | [@roseg769](https://github.com/roseg769) |  Documentation set |
+|  7  | <img src="https://avatars.githubusercontent.com/u/163309931?v=4" width="50px;" /> | [@Darshankhnvr](https://github.com/Darshankhnvr) | Fix Issue Navbar #47 |
+|  8  | <img src="https://avatars.githubusercontent.com/u/203383767?v=4" width="50px;" /> | [@nneha19](https://github.com/nneha19) | Issue #41 & #49  |
+|  9  | <img src="https://avatars.githubusercontent.com/u/157229547?v=4" width="50px;" /> | [@royalsrivastavagithub](https://github.com/royalsrivastavagithub) |  Fix issue #54 |
+|  10 | <img src="https://avatars.githubusercontent.com/u/101133391?v=4" width="50px;" /> | [@Vandana-Ss](https://github.com/Vandana-Ss) |  Fixes Multiple Issues & Add New Features |
 
 > Want to be featured here? Contribute to the project and submit a PR or join discussions in Issues!
 
