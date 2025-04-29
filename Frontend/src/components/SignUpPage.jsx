@@ -9,11 +9,15 @@ export default function SignUpPage() {
     username: "",
     email: "",
     password: "",
+    phone: ""
   })
-
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [imageLoaded, setImageLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [errors, setErrors] = useState({
+    email: "",
+    phone: ""
+  })
 
   // Because images are loaded more quickly
   useEffect(() => {
@@ -47,13 +51,44 @@ export default function SignUpPage() {
   const handleChange = (e) => {
     const { name, value } = e.target
     setFormData({ ...formData, [name]: value })
+
+    if (name === "email") {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      setErrors((prev) => ({
+        ...prev,
+        email: emailRegex.test(value) ? "" : "Invalid email format",
+      }));
+    }
+
+    // Validate phone number (must be 10 digits)
+    if (name === "phone") {
+      const cleanedValue = value.replace(/\D/g, '').slice(0, 10);
+      setFormData(prev => ({ ...prev, phone: cleanedValue }));
+
+      const phoneRegex = /^[0-9]{10}$/;
+      setErrors(prev => ({
+        ...prev,
+        phone: phoneRegex.test(cleanedValue) ? "" : "Phone number must be 10 digits",
+      }));
+      return;
+    }
   }
+
 
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault()
     // You can implement form submission logic here, e.g., API call to register the user
+    if (errors.email || errors.phone) {
+      alert("Please enter the correct details.");
+      return;
+    }
+    if (!formData.username || !formData.email || !formData.password || !formData.phone) {
+      alert("Please fill all the fields.");
+      return;
+    }
     console.log("Form Submitted", formData)
+    navigate("/")
   }
 
   return (
@@ -96,6 +131,7 @@ export default function SignUpPage() {
                   placeholder="Enter Username"
                   value={formData.username}
                   onChange={handleChange}
+                  name="username"
                   id="username"
                   required
                   className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
@@ -120,6 +156,7 @@ export default function SignUpPage() {
                   placeholder="Enter Email"
                   value={formData.email}
                   onChange={handleChange}
+                  name="email"
                   id="email"
                   required
                   className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
@@ -134,6 +171,9 @@ export default function SignUpPage() {
                   <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z" />
                 </svg>
               </div>
+              {errors.email && (
+                <p className="text-xs text-red-600 mt-1">{errors.email}</p>
+              )}
             </div>
 
             {/* Phone Number Field */}
@@ -144,7 +184,10 @@ export default function SignUpPage() {
                   placeholder="Enter Phone Number"
                   value={formData.phone}
                   onChange={handleChange}
+                  pattern="\d{10}"
+                  maxLength={10}
                   id="phone"
+                  name="phone"
                   required
                   className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
                 />
@@ -158,6 +201,9 @@ export default function SignUpPage() {
                   <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 011.11-.21c1.21.49 2.53.76 3.88.76a1 1 0 011 1v3.5a1 1 0 01-1 1C10.5 22 2 13.5 2 3.5a1 1 0 011-1H6.5a1 1 0 011 1c0 1.35.27 2.67.76 3.88a1 1 0 01-.21 1.11l-2.2 2.2z" />
                 </svg>
               </div>
+              {errors.phone && (
+                <p className="text-xs text-red-600 mt-1">{errors.phone}</p>
+              )}
             </div>
 
             {/* Password Field */}
@@ -166,6 +212,9 @@ export default function SignUpPage() {
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  name="password"
                   id="password"
                   required
                   className="bg-transparent w-full text-sm text-gray-800 border-b border-gray-400 focus:border-gray-800 px-2 py-3 outline-none placeholder:text-gray-800"
@@ -194,19 +243,20 @@ export default function SignUpPage() {
             </div>
             {/* Login Button */}
             <div className="mt-10 mb-4">
-              <Link to="/home">
-                <button
-                  type="button"
-                  // disabled={loading}
-                  // onClick={handleClick}
-                  className="w-full py-2.5 px-4 text-sm font-semibold tracking-wider cursor-pointer
+              {/*<Link to="/home">*/}
+              <button
+                type="submit"
+                //type = "button"
+                // disabled={loading}
+                // onClick={handleClick}
+                className="w-full py-2.5 px-4 text-sm font-semibold tracking-wider cursor-pointer
                         rounded-full text-white bg-[#0071c2] hover:bg-[#3a90f3] focus:outline-none"
-                >
-                  Signup
-                </button>
-              </Link>
+              >
+                Signup
+              </button>
+              {/*</Link>*/}
             </div>
-            
+
           </form>
         </div>
       </div>
