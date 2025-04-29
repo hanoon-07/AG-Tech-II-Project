@@ -1,3 +1,4 @@
+
 # 📚 University Resource Hub  
 
 A MERN Stack platform for accessing and managing university study materials, including books, outlines, and Tech Guidance.   
@@ -91,5 +92,6 @@ yarn run dev
 ## [Join to me own Discord Server](https://discord.gg/gSRwHkSm)
 ---
 This will provide you a local address to run the web application. 😎 
+
 
 
