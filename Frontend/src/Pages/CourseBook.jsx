@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { ClimbingBoxLoader } from "react-spinners";
 import Button from "../components/Button";
+import UploadCards from "../components/UploadCards";
 
 const CourseBook = () => {
   const [loading, setLoading] = useState(true);
@@ -173,30 +174,13 @@ function BookContents() {
   
 
   return (
-    <div className=" mx-auto p-4 ml-8 mr-8">
+    <div className=" mx-auto p-6 max-w-7xl">
       <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold my-3 sm:my-4 md:my-6 px-2">
         Search: Result Past Paper: Discrete Mathematics 3rd Semester Course Code GE-167
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-10">
         {uploads.map((upload) => (
-          <div
-            key={upload.id}
-            className="bg-gray-100 p-2 sm:p-3 md:p-4 shadow-md sm:shadow-lg shadow-gray-300 sm:shadow-gray-400 rounded-lg sm:rounded-xl relative flex flex-col items-center text-center transition-all duration-300 ease-out hover:scale-105 hover:shadow-xl sm:hover:shadow-2xl cursor-pointer"
-          >
-            <img
-              src={upload.image}
-              alt={upload.title}
-              className="w-full h-28 xs:h-32 sm:h-36 md:h-40 lg:h-48 object-cover rounded-md sm:rounded-lg transition-all duration-300 ease-in-out transform hover:scale-105 sm:hover:scale-110"
-            />
-
-            <h3 className="text-sm xs:text-base sm:text-lg font-semibold mt-1.5 mb-1 sm:my-2 line-clamp-2">{upload.title}</h3>
-            <p className="text-[10px] xs:text-xs sm:text-sm text-gray-600 mb-1 sm:mb-2">{upload.university}</p>
-            {/* Small & Centered Button */}
-            <Button className="btn mx-auto bg-blue-600 text-white px-2 xs:px-3 sm:px-4 md:px-6 py-1 xs:py-1.5 sm:py-2 md:py-3 text-[10px] xs:text-xs sm:text-sm rounded-full shadow-sm sm:shadow-md hover:bg-amber-500 hover:font-bold transition-all duration-200 ease-in-out transform hover:scale-105 hover:translate-y-1 cursor-pointer">
-              DOWNLOAD
-            </Button>
-
-          </div>
+                    <UploadCards key={upload.id} upload={upload} />
         ))}
       </div>
       <div className="flex justify-center items-center gap-4 mt-8">
