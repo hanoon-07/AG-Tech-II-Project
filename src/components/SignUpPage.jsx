@@ -62,7 +62,7 @@ export default function SignUpPage() {
 
     // Validate phone number (must be 10 digits)
     if (name === "phone") {
-      const cleanedValue = value.replace(/\D/g, '').slice(0, 10);
+      const cleanedValue = value.replace(/\D/g, '').slice(0, 11);
       setFormData(prev => ({ ...prev, phone: cleanedValue }));
 
       const phoneRegex = /^[0-9]{10}$/;
