@@ -1,27 +1,100 @@
+/* eslint-disable no-unused-vars */
 import React from "react"
-import Button from "./Button";
+import JSZip from "jszip";
+import { saveAs } from "file-saver";
 
 const UploadCards = ({ upload }) => {
+  // Inside your component
+  const getImageSource = (subjectName) => {
+    if (subjectName === "Physics") {
+      return "./paperThumbnail/DLD.png";
+    }
+    else if (subjectName === "") {
+      return "";
+    }
+   
+  };
+
+
+  const handleDownload = async () => {
+    let paperUpload = upload.paperUpload;
+  
+    // Parse if it's a stringified array
+    if (typeof paperUpload === "string" && paperUpload.startsWith("[")) {
+      try {
+        paperUpload = JSON.parse(paperUpload);
+      } catch (error) {
+        alert("Invalid paper format.");
+        return;
+      }
+    }
+  
+    // If it's a single file, open in browser
+    if (Array.isArray(paperUpload) && paperUpload.length === 1) {
+      window.open(paperUpload[0], "_blank");
+      return;
+    }
+  
+    // If multiple files – zip and download
+    if (Array.isArray(paperUpload) && paperUpload.length > 1) {
+      const zip = new JSZip();
+  
+      for (let i = 0; i < paperUpload.length; i++) {
+        const url = paperUpload[i];
+        try {
+          const response = await fetch(url);
+          const blob = await response.blob();
+          const filename = `paper_${i + 1}.pdf`;
+          zip.file(filename, blob);
+        } catch (err) {
+          console.error("Failed to fetch file:", url, err);
+        }
+      }
+  
+      zip.generateAsync({ type: "blob" }).then((content) => {
+        saveAs(content, "papers.zip");
+      });
+    }
+  
+    // Fallback
+    else if (typeof paperUpload === "string") {
+      window.open(paperUpload, "_blank");
+    } else {
+      alert("No valid paper found.");
+    }
+  };
+  
+  
+
   return (
     <div className="w-full max-w-sm h-[380px] bg-gray-100 p-4 shadow-lg shadow-gray-400 rounded-xl flex flex-col justify-between text-center transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl cursor-pointer">
 
-      {/* Image */}
+
       <img
-        src={upload.image}
-        alt={upload.title}
+       src={upload.paperThumbnail ? upload.paperThumbnail : getImageSource(upload.subjectName)}   // This will conditionally fetch the image
+        alt={upload.subjectName}
         className="w-full h-48 object-cover rounded-lg"
       />
 
-      {/* Text Content */}
-      <div className="mt-3 flex flex-col items-center flex-grow gap-2 lg:gap-1">
-        <h3 className="text-base sm:text-lg font-semibold line-clamp-2">{upload.title}</h3>
-        <p className="text-xs sm:text-sm text-gray-600 line-clamp-1">{upload.university}</p>
-      </div>
 
+      {/* Text Content */}
+<div className="mt-3 flex flex-col items-center flex-grow gap-2 lg:gap-1">
+  {/* Conditionally display subjectName.title if it's available */}
+  <h3 className="text-base sm:text-lg font-semibold line-clamp-2">
+    {upload.subjectName ? upload.subjectName : "Subject Name Not Available"}
+  </h3>
+
+  {/* Conditionally display universityName.university if it's available */}
+  <p className="text-xs sm:text-sm text-gray-600 line-clamp-1">
+    {upload.universityName ? upload.universityName : "University Not Available"}
+  </p>
+</div>
       {/* Button */}
-      <Button className="cursor-pointer btn mx-auto mt-4 mb-2 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm rounded-full shadow-md hover:bg-amber-500 hover:font-bold transition-all duration-200 ease-in-out transform hover:scale-105 hover:translate-y-1">
+      <button 
+         onClick={handleDownload}
+        className="cursor-pointer btn mx-auto mt-4 mb-2 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm rounded-full shadow-md hover:bg-amber-500 hover:font-bold transition-all duration-200 ease-in-out transform hover:scale-105 hover:translate-y-1">
         DOWNLOAD
-      </Button>
+      </button>
     </div>
   );
 };

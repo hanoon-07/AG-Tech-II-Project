@@ -24,7 +24,6 @@ const PastPapers = () => {
     );
   }
 
-
   return (
     <>
       <div>
@@ -103,13 +102,9 @@ function Searchcontents() {
           </button>
         </div>
       </div>
-
-
     </div>
   );
 }
-
-
 
 function Papercontents() {
   const [uploads, setUploads] = useState([]);
@@ -122,45 +117,42 @@ function Papercontents() {
       try {
         const res = await axios.get("http://localhost:8000/api/pastPapers");
         console.log("Fetched Data:", res.data);
-        setUploads(res.data.data); // ⬅️ Fixed here
+        setUploads(res.data.data); // Make sure data is an array
       } catch (error) {
         console.error("Error fetching papers:", error);
       }
     };
-  
+
     fetchData();
   }, []);
-  
-  
+
   const indexOfLastItem = currentPage * itemsPerPage;
-const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-// Fallback to 0 if uploads is not an array (prevent crash)
-const totalPages = Array.isArray(uploads)
-  ? Math.ceil(uploads.length / itemsPerPage)
-  : 0;
+  const totalPages = Array.isArray(uploads)
+    ? Math.ceil(uploads.length / itemsPerPage)
+    : 0;
 
-const goToNextPage = () => {
-  setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-};
+  const goToNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+  };
 
-const goToPrevPage = () => {
-  setCurrentPage((prev) => Math.max(prev - 1, 1));
-};
+  const goToPrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+  };
 
-// Only slice if uploads is an array
-const currentUploads = Array.isArray(uploads)
-  ? uploads.slice(indexOfFirstItem, indexOfLastItem)
-  : [];
-
+  const currentUploads = Array.isArray(uploads)
+    ? uploads.slice(indexOfFirstItem, indexOfLastItem)
+    : [];
 
   return (
     <div className="mx-auto p-6 max-w-7xl">
       <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold my-3 sm:my-4 md:my-6 px-2">
-        Search Result Past Paper: Discrete Mathematics 3rd Semester Course Code GE-167
+        Search Result Past Paper: Discrete Mathematics 3rd Semester Course Code
+        GE-167
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10">
-        {fetchData.map((upload) => (
+        {currentUploads.map((upload) => (
           <UploadCards key={upload._id || upload.id} upload={upload} />
         ))}
       </div>
