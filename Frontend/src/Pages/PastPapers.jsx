@@ -109,7 +109,7 @@ function Searchcontents() {
 function Papercontents() {
   const [uploads, setUploads] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 3;
+  const itemsPerPage = 12;
 
   // Fetch data from backend
   useEffect(() => {

@@ -22,7 +22,6 @@ const pastPaperSchema = new mongoose.Schema({
   },
   paperThumbnail: {
     type: String, // Array of Cloudinary URLs
-    required: [true, 'At least one paper must be uploaded'],
   },
 }, { timestamps: true });
 
