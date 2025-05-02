@@ -18,7 +18,7 @@ const bookSchema = new mongoose.Schema({
   },
   bookThumbnail: {
     type: String, // Array of Cloudinary URLs
-    required: [true, 'At least one paper must be uploaded'],
+   
   },
 }, { timestamps: true });
 

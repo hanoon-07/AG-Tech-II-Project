@@ -1,6 +1,6 @@
 import React from "react";
 
-import PaperUploadForm from "../components/PaperUploadForm";
+import PaperUploadForm from "../components/Upload/PaperUploadForm";
 
 function UploadPaper() {
   return <PaperUploadForm/>;

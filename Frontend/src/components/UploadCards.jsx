@@ -19,7 +19,7 @@ const UploadCards = ({ upload }) => {
       </div>
 
       {/* Button */}
-      <Button className="btn mx-auto mt-4 mb-2 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm rounded-full shadow-md hover:bg-amber-500 hover:font-bold transition-all duration-200 ease-in-out transform hover:scale-105 hover:translate-y-1">
+      <Button className="cursor-pointer btn mx-auto mt-4 mb-2 bg-blue-600 text-white px-4 sm:px-6 py-2 sm:py-3 text-xs sm:text-sm rounded-full shadow-md hover:bg-amber-500 hover:font-bold transition-all duration-200 ease-in-out transform hover:scale-105 hover:translate-y-1">
         DOWNLOAD
       </Button>
     </div>

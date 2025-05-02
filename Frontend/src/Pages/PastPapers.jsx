@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { ClimbingBoxLoader } from "react-spinners";
-import Button from "../components/Button";
-import UploadCards from "../components/UploadCards";
 
+import UploadCards from "../components/UploadCards";
+import axios from "axios";
 const PastPapers = () => {
   const [loading, setLoading] = useState(true);
 
@@ -112,76 +112,57 @@ function Searchcontents() {
 
 
 function Papercontents() {
-  // Dummy Values
-  const uploads = [
-    {
-      id: 1,
-      year: "2018",
-      title: "IT-201 Object Oriented Programming Past Paper 2018",
-      university: "Punjab University",
-      image: "./Images/2018.PNG",
-    },
-    {
-      id: 2,
-      year: "2019",
-      title: "IT-201 Object Oriented Programming Past Paper 2019",
-      university: "University of Management & Technology",
-      image: "./Images/2020.PNG",
-    },
-    {
-      id: 3,
-      year: "2021",
-      title: "IT-201 Object Oriented Programming Past Paper 2021",
-      university: "Punjab University",
-      image: "./Images/bs 2021.PNG",
-    },
-    {
-      id: 4,
-      title: "Discrete Mathematics and Its Applications",
-      university: "Kenneth Rosen",
-      image: "./Images/Discrete Mathematics.jpg",
-    },
-    {
-      id: 5,
-      title: "Database Past Paper and Guess Material 3rd Semester",
-      university: "PU & Other Universities",
-      image: "./Images/Guess Paper.png",
-    },
-    {
-      id: 6,
-      title: "Programming Fundamentals - C++",
-      university: "D.S Malik",
-      image: "./Images/DS Malik C++.jpg",
-    },
-  ];
+  const [uploads, setUploads] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 3;
 
-const [currentPage, setCurrentPage] = useState(1);
-const itemsPerPage = 3; 
+  // Fetch data from backend
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get("http://localhost:8000/api/pastPapers");
+        console.log("Fetched Data:", res.data);
+        setUploads(res.data.data); // ⬅️ Fixed here
+      } catch (error) {
+        console.error("Error fetching papers:", error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
+  
+  const indexOfLastItem = currentPage * itemsPerPage;
+const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentUploads = uploads.slice(indexOfFirstItem, indexOfLastItem);
+// Fallback to 0 if uploads is not an array (prevent crash)
+const totalPages = Array.isArray(uploads)
+  ? Math.ceil(uploads.length / itemsPerPage)
+  : 0;
 
-  const totalPages = Math.ceil(uploads.length / itemsPerPage);
+const goToNextPage = () => {
+  setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+};
 
-  const goToNextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
+const goToPrevPage = () => {
+  setCurrentPage((prev) => Math.max(prev - 1, 1));
+};
 
-  const goToPrevPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
-  };
+// Only slice if uploads is an array
+const currentUploads = Array.isArray(uploads)
+  ? uploads.slice(indexOfFirstItem, indexOfLastItem)
+  : [];
 
 
   return (
-    <div className=" mx-auto p-6 max-w-7xl">
+    <div className="mx-auto p-6 max-w-7xl">
       <h2 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold my-3 sm:my-4 md:my-6 px-2">
         Search Result Past Paper: Discrete Mathematics 3rd Semester Course Code GE-167
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-10">
-         {uploads.map((upload) => (
-            <UploadCards key={upload.id} upload={upload} />
-          ))}
+        {fetchData.map((upload) => (
+          <UploadCards key={upload._id || upload.id} upload={upload} />
+        ))}
       </div>
       <div className="flex justify-center items-center gap-4 mt-8">
         <button
@@ -204,9 +185,7 @@ const indexOfLastItem = currentPage * itemsPerPage;
           Next
         </button>
       </div>
-
     </div>
-    
   );
 }
 
