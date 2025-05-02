@@ -143,3 +143,22 @@ export const deletePastPaper = async (req, res) => {
     });
   }
 };
+
+
+// Get recently uploaded past papers
+export const getRecentPapers = async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 8;  // fetch latest 8 by default
+    const recentPapers = await PastPaper.find().sort({ createdAt: -1 }).limit(limit);
+
+    res.status(200).json({
+      status: "success",
+      results: recentPapers.length,
+      data: recentPapers,
+    });
+
+  } catch (error) {
+    console.error("Error fetching recent past papers", error);
+    res.status(500).json({ message: error.message });
+  }
+};
