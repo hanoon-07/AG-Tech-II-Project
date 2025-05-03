@@ -3,10 +3,10 @@ import PastPaper from '../models/PastPaper.js';
 // CREATE
 export const uploadPastPaper = async (req, res) => {
   try {
-    const { subjectName, courseCode, year, universityName, paperUpload, paperThumbnail} = req.body;
+    const { subjectName, courseCode, year, universityName, paperUpload, paperThumbnail, paperUnsolved} = req.body;
     console.log("Request sent to the past paper: ",req.body);
 
-    if (!subjectName || !courseCode || !year || !paperThumbnail || !paperUpload || paperUpload.length === 0) {
+    if (!subjectName || !courseCode || !year || !paperThumbnail || !paperUpload || !paperUnsolved || paperUpload.length === 0) {
       return res.status(400).json({
         status: 'fail',
         message: 'Please provide all required fields!',

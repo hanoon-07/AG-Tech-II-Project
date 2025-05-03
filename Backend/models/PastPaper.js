@@ -23,6 +23,10 @@ const pastPaperSchema = new mongoose.Schema({
   paperThumbnail: {
     type: String, // Array of Cloudinary URLs
   },
+  paperUnsolved: {
+    type: String, // new field
+    default: "Unsolved",
+  },
 }, { timestamps: true });
 
 const PastPaper = mongoose.model('PastPaper', pastPaperSchema);

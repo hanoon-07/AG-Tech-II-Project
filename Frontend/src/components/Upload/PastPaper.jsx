@@ -11,6 +11,7 @@ function Paper() {
     const [code, setCode] = useState("");
     const [year, setYear] = useState("");
     const [universityName, setUniversityName] = useState("");
+    const [paperUnsolved, setPaperUnsolved] = useState("");
     const [isUploading, setIsUploading] = useState(false);
 
     const handleFileSelect = (event) => {
@@ -36,7 +37,7 @@ function Paper() {
     const handleSubmit = async (e) => {
         e.preventDefault();
       
-        if (!subject.trim() || !code.trim() || !year.trim()) {
+        if (!subject.trim() || !code.trim() || !year.trim() || !universityName.trim() || !paperUnsolved.trim()) {
           toast.error("Please fill all required fields (*)");
           return;
         }
@@ -86,6 +87,7 @@ function Paper() {
             subjectName: subject,
             courseCode: code,
             year,
+            paperUnsolved,
             universityName,
             paperUpload: uploadedFileUrls,
             paperThumbnail: thumbnail,
@@ -94,9 +96,9 @@ function Paper() {
           await axios.post("http://localhost:8000/api/pastPapers", payload);
       
           toast.success("Papers uploaded successfully!");
-          setSubject("");
-          setCode("");
-          setYear("");
+        //   setSubject("");
+        //   setCode("");
+        //   setYear("");
           setSelectedFiles([]);
         } catch (err) {
           console.error("Upload error:", err);
@@ -163,7 +165,17 @@ function Paper() {
                 </div>
 
                 <div className="mb-4">
-                    <label className="block text-sm font-medium mb-2">University Name</label>
+                    <label className="block text-sm font-medium mb-2">Paper Solved/Unsolved *</label>
+                    <input 
+                        type="text" 
+                        className="w-full border rounded px-3 py-2" 
+                        value={paperUnsolved}
+                        onChange={(e) => setPaperUnsolved(e.target.value)}
+                    />
+                </div>
+                
+                <div className="mb-4">
+                    <label className="block text-sm font-medium mb-2">University Name *</label>
                     <input 
                         type="text" 
                         className="w-full border rounded px-3 py-2" 
@@ -172,6 +184,8 @@ function Paper() {
                     />
                 </div>
 
+               
+                
                 <div className="mb-6">
                     <label className="block text-sm font-medium mb-2">Paper Upload *</label>
                     <label className=" w-full cursor-pointer inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">

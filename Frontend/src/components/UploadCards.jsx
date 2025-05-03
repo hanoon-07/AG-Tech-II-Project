@@ -73,17 +73,32 @@ const UploadCards = ({ upload }) => {
     <div className="w-full max-w-sm h-[380px] bg-gray-100 p-4 shadow-lg shadow-gray-400 rounded-xl flex flex-col justify-between text-center transition-all duration-300 ease-out hover:scale-105 hover:shadow-2xl cursor-pointer">
 
 
-      <img
-        src={upload.paperThumbnail ? upload.paperThumbnail : getImageSource(upload.subjectName)}   // This will conditionally fetch the image
-        alt={upload.subjectName}
-        className="w-full h-48 object-cover rounded-lg"
-      />
+      <div className="relative">
+        <img
+          src={upload.paperThumbnail ? upload.paperThumbnail : getImageSource(upload.subjectName)}
+          alt={upload.subjectName}
+          className="w-full h-48 object-cover rounded-lg"
+        />
+        <span
+          className={`absolute top-2 right-1 text-white px-2 py-1 rounded-full text-xs sm:text-sm shadow-xl shadow-gray-400 ${upload.paperUnsolved === "Unsolved" ? "bg-red-500" : "bg-green-500"
+            }`}
+        >
+          {upload.paperUnsolved === "Unsolved" ? "Unsolved" : "Unsolved"}
+        </span>
+      </div>
+
 
 
       {/* Text Content */}
       <div className="mt-3 flex flex-col items-center flex-grow gap-2 lg:gap-1">
         {/* Conditionally display subjectName.title if it's available */}
-        <h3 className="text-base sm:text-lg font-semibold line-clamp-2">
+        <h3
+          className={`font-semibold line-clamp-2 
+            ${upload.subjectName === "Programming Fundamentals 17 to 21" || upload.subjectName === "Calculus-II 17 to 21" || upload.subjectName === "Electricity and Magnetism 17 to 21"
+            ? "text-[5px] sm:text-base"
+            : "text-base sm:text-lg"
+            }`}
+        >
           {upload.subjectName ? upload.subjectName : "Subject Name Not Available"}
         </h3>
 
@@ -92,13 +107,13 @@ const UploadCards = ({ upload }) => {
           {upload.universityName ? upload.universityName : "University Not Available"}
         </p>
         <div className="flex gap-2">
-  <p className="text-md font-bold sm:text-sm text-gray-600 line-clamp-1">
-    {upload.courseCode ? upload.courseCode : "Course Code"}
-  </p>
-  <p className="text-md font-bold sm:text-sm text-gray-600 line-clamp-1">
-    {upload.year ? upload.year : "No Year"}
-  </p>
-</div>
+          <p className="text-md font-bold sm:text-sm text-gray-600 line-clamp-1">
+            {upload.courseCode ? upload.courseCode : "Course Code"}
+          </p>
+          <p className="text-md font-bold sm:text-sm text-gray-600 line-clamp-1">
+            {upload.year ? upload.year : "No Year"}
+          </p>
+        </div>
 
       </div>
       {/* Button */}

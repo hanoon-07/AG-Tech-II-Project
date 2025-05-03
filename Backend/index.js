@@ -5,7 +5,6 @@ import authRoutes from './routes/authRoutes.js';
 import pastPaperRoutes from './routes/pastPaperRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
 import cors from 'cors';
-
 import path from 'path';
 import fs from 'fs';
 import mime from 'mime'; 
@@ -78,7 +77,9 @@ mongoose
   });
 
 // Start server
-const port = process.env.PORT || 8000;
-app.listen(port, () => {
-  console.log(`App running on port ${port}`);
-});
+// const port = process.env.PORT || 8000;
+// app.listen(port, () => {
+//   console.log(`App running on port ${port}`);
+// });
+
+export default app;

@@ -67,8 +67,8 @@
   content: "";
   background: linear-gradient(
     45deg,
-    #2563EB, #fbff00, #9b9811, #48FF00,
-    #00FFD5, #2563EB, hsla(313, 58%, 60%, 0.973), #2563EB
+    #2563EB, #2563EB, #48FF00,
+    #00FFD5,  #2563EB
   );
   position: absolute;
   top: -2px;
