@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 import bcrypt from 'bcryptjs';
-import User from '../models/User.js'; // Note: .js is required in ESM
+import User from '../models/User.js'; 
 
 dotenv.config();
 console.log(process.env.JWT_SECRET);
