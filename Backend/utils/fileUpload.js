@@ -37,5 +37,5 @@ const uploadToCloudinary = (fileBuffer, options = {}) => {
   });
 };
 
-// Export both multer middleware and the upload function
+
 export { upload, uploadToCloudinary };

@@ -6,13 +6,13 @@ import pastPaperRoutes from './routes/pastPaperRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
 import cors from 'cors';
 
-// Initialize app
+
 const app = express();
 
-// Load environment variables
+
 dotenv.config();
 
-// Middlewares
+
 app.use(express.json());
 app.use(
   cors({

@@ -14,7 +14,7 @@ export const uploadBook = async (req, res) => {
     const cloudinaryResult = await uploadToCloudinary(file.buffer, {
       folder: 'books', // Specify the folder in Cloudinary
       resource_type: 'auto', // Let Cloudinary detect the resource type
-      public_id: `${Date.now()}-${file.originalname.split('.')[0]}` // Optional: define a public_id
+      public_id: `${Date.now()}-${file.originalname.split('.')[0]}` 
     });
 
     // Check if upload was successful
