@@ -1,26 +1,35 @@
 import bookModel from '../models/Books.js';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-import path from 'path';
+import { uploadToCloudinary } from '../utils/fileUpload.js';
 
 export const uploadBook = async (req, res) => {
   try {
     const { bookName, authorName, relatedCourseName } = req.body;
-    const file = req.file;
+    const file = req.file; // File is now in memory
 
     if (!file || !bookName || !authorName || !relatedCourseName) {
       return res.status(400).json({ message: 'All fields are required!' });
     }
 
-    const fileUrl = `/uploads/books/${file.filename}`;
-    console.log("File URL:", fileUrl);
+    // Upload the buffer from req.file.buffer to Cloudinary
+    const cloudinaryResult = await uploadToCloudinary(file.buffer, {
+      folder: 'books', // Specify the folder in Cloudinary
+      resource_type: 'auto', // Let Cloudinary detect the resource type
+      public_id: `${Date.now()}-${file.originalname.split('.')[0]}` // Optional: define a public_id
+    });
+
+    // Check if upload was successful
+    if (!cloudinaryResult || !cloudinaryResult.secure_url) {
+       throw new Error('Cloudinary upload failed');
+    }
+
+    const fileUrl = cloudinaryResult.secure_url; // Get the secure URL
 
     const newBook = await bookModel.create({
       bookName,
       authorName,
       relatedCourseName,
-      bookUpload: fileUrl,
-      bookThumbnail: "",
+      bookUpload: fileUrl, // Save the Cloudinary URL
+      bookThumbnail: "", // Handle thumbnail separately if needed
     });
 
     res.status(201).json({
@@ -29,14 +38,14 @@ export const uploadBook = async (req, res) => {
       data: newBook,
     });
   } catch (error) {
-    console.error('File upload error:', error);
-    res.status(500).json({ message: error.message });
+    console.error('Error uploading book:', error);
+    res.status(500).json({
+      status: 'error',
+      message: error.message || 'Something went wrong while uploading!',
+    });
   }
 };
 
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 // Get All Books
 export const getAllBooks = async (req, res) => {
   try {
