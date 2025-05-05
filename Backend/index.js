@@ -1,7 +1,3 @@
-import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import authRoutes from './routes/authRoutes.js';
 import pastPaperRoutes from './routes/pastPaperRoutes.js';
 import bookRoutes from './routes/bookRoutes.js';
 import cors from 'cors';
@@ -31,12 +27,10 @@ app.use(
     credentials: true,
   })
 );
-
 // Test route
 app.get('/', (req, res) => {
   res.send('Server running!');
 });
-
 // API routes
 app.use('/api/auth', authRoutes);
 app.use('/api/books', bookRoutes);
@@ -65,7 +59,6 @@ app.get('/uploads/books/:fileName', (req, res) => {
 // MongoDB connection
 const api = process.env.MONGO;
 console.log("Api", api);
-
 mongoose
   .connect(api, {
     useNewUrlParser: true,
