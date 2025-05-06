@@ -48,7 +48,7 @@ function UploadBooks() {
             formData.append("authorName", authorName);
             formData.append("relatedCourseName", courseBook);
 
-            const response = await axios.post("http://localhost:8000/api/books", formData, {
+            const response = await axios.post("/api/books", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },

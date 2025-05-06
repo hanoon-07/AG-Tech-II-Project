@@ -93,7 +93,7 @@ function Paper() {
             paperThumbnail: thumbnail,
           };
       
-          await axios.post("http://localhost:8000/api/pastPapers", payload);
+          await axios.post("/api/pastPapers", payload);
       
           toast.success("Papers uploaded successfully!");
         //   setSubject("");

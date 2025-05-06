@@ -1,38 +1,20 @@
-import fs from 'fs';
 import multer from 'multer';
-import path from 'path';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { v2 as cloudinary } from 'cloudinary';
 
-// Required for __dirname in ESM
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const dir = path.join(__dirname, '../uploads/books');
-
-    // Check if directory exists, if not create it
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
-
-    cb(null, dir);
-  },
-
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const ext = path.extname(file.originalname);
-    cb(null, `${file.fieldname}-${uniqueSuffix}${ext}`);
-  }
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB
-  fileFilter: (req, file, cb) => {
-    console.log("Files ===========================", file);
 
+const storage = multer.memoryStorage();
+
+const upload = multer({
+  storage: storage, // Use memory storage
+  limits: { fileSize: 50 * 1024 * 1024 }, // 50MB limit (adjust as needed)
+  fileFilter: (req, file, cb) => {
+   
     if (file.mimetype === 'application/pdf') {
       cb(null, true);
     } else {
@@ -41,4 +23,19 @@ const upload = multer({
   }
 });
 
-export default upload;
+// Function to upload buffer to Cloudinary
+const uploadToCloudinary = (fileBuffer, options = {}) => {
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(options, (error, result) => {
+      if (error) {
+        return reject(error);
+      }
+      resolve(result);
+    });
+    // Pipe the buffer to the upload stream
+    uploadStream.end(fileBuffer);
+  });
+};
+
+
+export { upload, uploadToCloudinary };
