@@ -148,7 +148,7 @@ export const deletePastPaper = async (req, res) => {
 // Get recently uploaded past papers
 export const getRecentPapers = async (req, res) => {
   try {
-    const limit = parseInt(req.query.limit) || 8;  // fetch latest 8 by default
+    const limit = parseInt(req.query.limit) || 6;  // fetch latest 8 by default
     const recentPapers = await PastPaper.find().sort({ createdAt: -1 }).limit(limit);
 
     res.status(200).json({
