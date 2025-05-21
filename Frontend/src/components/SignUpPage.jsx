@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom"
 import { ClimbingBoxLoader } from "react-spinners";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
+// API URL - adjust this to your actual backend URL
+const API_URL = "/api";
 
 export default function SignUpPage() {
   const navigate = useNavigate() // Hook to navigate to another page
@@ -18,6 +22,11 @@ export default function SignUpPage() {
     email: "",
     phone: ""
   })
+  const [signupStatus, setSignupStatus] = useState({
+    isLoading: false,
+    error: null,
+    success: false
+  });
 
   // Because images are loaded more quickly
   useEffect(() => {
@@ -76,23 +85,90 @@ export default function SignUpPage() {
 
 
   // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // You can implement form submission logic here, e.g., API call to register the user
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Validate form data
     if (errors.email || errors.phone) {
-      alert("Please enter the correct details.");
+      toast.error("Please enter the correct details.");
       return;
     }
     if (!formData.username || !formData.email || !formData.password || !formData.phone) {
-      alert("Please fill all the fields.");
+      toast.warning("Please fill all the fields.");
       return;
     }
-    console.log("Form Submitted", formData)
-    navigate("/")
-  }
+    
+    try {
+      // Set loading state
+      setSignupStatus({ isLoading: true, error: null, success: false });
+      
+      // Prepare data for API call
+      const userData = {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        mobileNumber: formData.phone // match backend field name
+      };
+      
+      // Make API request to signup endpoint
+      const response = await fetch(`${API_URL}/auth/signup`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userData),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.message || 'Failed to sign up');
+      }
+      
+      // Success state
+      setSignupStatus({ isLoading: false, error: null, success: true });
+      
+      // Store token in localStorage if your app uses it
+      localStorage.setItem('token', data.data.token);
+      localStorage.setItem('user', JSON.stringify(data.data.user));
+      
+      // Show success message with toast
+      toast.success("Account created successfully!");
+      
+      // Redirect to home page or login page after a short delay
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+      
+    } catch (error) {
+      console.error("Signup error:", error);
+      setSignupStatus({ 
+        isLoading: false, 
+        error: error.message || "Failed to create account. Please try again.", 
+        success: false 
+      });
+      
+      // Show error message with toast
+      toast.error(error.message || "Failed to create account. Please try again.");
+    }
+  };
 
   return (
     <>
+      {/* Toast Container */}
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+      
       <div
         className="flex justify-center items-center font-[sans-serif] h-full min-h-screen p-4"
         style={{
@@ -241,20 +317,31 @@ export default function SignUpPage() {
                 Forgot password?
               </a>
             </div>
+            {/* We can remove these since we're using toast notifications now */}
+            {/* Display signup errors */}
+            {/* {signupStatus.error && (
+              <div className="mt-4 p-2 bg-red-100 text-red-700 rounded">
+                {signupStatus.error}
+              </div>
+            )} */}
+
+            {/* Display success message */}
+            {/* {signupStatus.success && (
+              <div className="mt-4 p-2 bg-green-100 text-green-700 rounded">
+                Account created successfully!
+              </div>
+            )} */}
+
             {/* Login Button */}
             <div className="mt-10 mb-4">
-              {/*<Link to="/home">*/}
               <button
                 type="submit"
-                //type = "button"
-                // disabled={loading}
-                // onClick={handleClick}
+                disabled={signupStatus.isLoading}
                 className="w-full py-2.5 px-4 text-sm font-semibold tracking-wider cursor-pointer
-                        rounded-full text-white bg-[#0071c2] hover:bg-[#3a90f3] focus:outline-none"
+                        rounded-full text-white bg-[#0071c2] hover:bg-[#3a90f3] focus:outline-none disabled:bg-gray-400"
               >
-                Signup
+                {signupStatus.isLoading ? "Creating Account..." : "Signup"}
               </button>
-              {/*</Link>*/}
             </div>
 
           </form>
