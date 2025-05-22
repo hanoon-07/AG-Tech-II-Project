@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { ClimbingBoxLoader } from "react-spinners";
 
-export default function AuthPage() {
+export default function Login() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
   const [imageLoaded, setImageLoaded] = useState(false);
